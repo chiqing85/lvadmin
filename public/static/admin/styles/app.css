@@ -5709,3 +5709,9 @@ textarea.md-input {
   background-size: cover;
   overflow: hidden;
 }
+.padding>.box {
+  padding: 16px;
+}
+.box .add {
+    padding: 1rem 0;
+}

@@ -37,7 +37,7 @@
             <form name="form" method="post" action="/login">
                 {{ csrf_field() }}
                 <div class="md-form-group float-label">
-                    <input type="text" class="md-input" name="user" required>
+                    <input type="text" class="md-input" name="username" required>
                     <label>用户名：</label>
                 </div>
                 <div class="md-form-group float-label">

@@ -69,11 +69,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link p-0 clear" href="#" data-toggle="dropdown">
                   <span class="avatar w-32">
-                    <img src="/static/admin/images/a0.jpg" alt="...">
+                    <img src="{{ \Auth::user()->pic }}" alt="...">
                     <i class="on b-white bottom"></i>
                   </span>
                         </a>
-                        <div ui-include="'../views/blocks/dropdown.user.html'"></div>
                     </li>
                     <li class="nav-item hidden-md-up">
                         <a class="nav-link pl-2" data-toggle="collapse" data-target="#collapse">

@@ -13,11 +13,19 @@
 
 Route::get('/', 'home\IndexController@index');
 
-
-Route::group(['prefix' => 'admin'], function () {
-   Route::get('/', 'admin\IndexController@index');
-   Route::get('/config', 'admin\ConfigController@index');
-});
-
-Route::get('/login', 'admin\LoginController@index');
+Route::get('/login', 'admin\LoginController@index')->name('login');
 Route::post('/login', 'admin\LoginController@login');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
+    // 首页
+    Route::get('/', 'admin\IndexController@index');
+    // 系统配置
+    Route::get('/config', 'admin\ConfigController@index');
+
+    // 用户
+    Route::get('/users', 'admin\UsersController@index');
+
+    // 角色
+    Route::get('/group', 'admin\GroupController@index');
+
+});

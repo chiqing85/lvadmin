@@ -77,40 +77,12 @@
                             </li>
                         </ul>
                     </li>
-
                     <li>
                         <a>
                     <span class="nav-caret">
                       <i class="fa fa-caret-down"></i>
                     </span>
-                            <span class="nav-icon">
-                      <i class="material-icons">&#xe8f0;
-                        <span ui-include="'/static/admin/images/i_2.svg'"></span>
-                      </i>
-                    </span>
-                            <span class="nav-text">用户管理</span>
-                        </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="headers.html" >
-                                    <span class="nav-text">Header</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="asides.html" >
-                                    <span class="nav-text">Aside</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="footers.html" >
-                                    <span class="nav-text">Footer</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
 
-                    <li>
-                        <a href="widget.html" >
                     <span class="nav-icon">
                       <i class="material-icons">&#xe8d2;
                         <span ui-include="'/static/admin/images/i_3.svg'"></span>
@@ -118,7 +90,56 @@
                     </span>
                             <span class="nav-text">权限管理</span>
                         </a>
+                        <ul class="nav-sub nav-mega nav-mega-3">
+                            <li>
+                                <a href="/admin/users" >
+                                    <span class="nav-text">用户列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/group" >
+                                    <span class="nav-text">角色列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="button.html" >
+                                    <span class="nav-text">权限节点</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
+                    <li>
+                            <a>
+                        <span class="nav-caret">
+                          <i class="fa fa-caret-down"></i>
+                        </span>
+                                <span class="nav-icon">
+                          <i class="material-icons">&#xe8f0;
+                            <span ui-include="'/static/admin/images/i_2.svg'"></span>
+                          </i>
+                        </span>
+                                <span class="nav-text">用户管理</span>
+                            </a>
+                            <ul class="nav-sub">
+                                <li>
+                                    <a href="headers.html" >
+                                        <span class="nav-text">Header</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="asides.html" >
+                                        <span class="nav-text">Aside</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="footers.html" >
+                                        <span class="nav-text">Footer</span>
+                                    </a>
+                                </li>
+                            </ul>
+                    </li>
+
                     <li>
                         <a>
                     <span class="nav-caret">
@@ -482,11 +503,14 @@
             <div class="nav-fold">
                 <a href="profile.html">
         	    <span class="pull-left">
-        	      <img src="/static/admin/images/a0.jpg" alt="..." class="w-40 img-circle">
+        	      <img src="{{ \Auth::user()->pic }}" alt="..." class="w-40 img-circle">
         	    </span>
                     <span class="clear hidden-folded p-x">
-        	      <span class="block _500">Jean Reyes</span>
-        	      <small class="block text-muted"><i class="fa fa-circle text-success m-r-sm"></i>online</small>
+        	      <span class="block _500">{{ \Auth::user()->username }}</span>
+        	      <small class="block text-muted">
+                      <i class="fa fa-circle text-success m-r-sm"></i>
+                      {{ \Auth::user()->group[0]['title'] }}
+                  </small>
         	    </span>
                 </a>
             </div>
