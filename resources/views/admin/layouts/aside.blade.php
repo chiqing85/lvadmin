@@ -102,7 +102,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="button.html" >
+                                <a href="/admin/rule" >
                                     <span class="nav-text">权限节点</span>
                                 </a>
                             </li>

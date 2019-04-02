@@ -9,7 +9,7 @@ class GroupController extends Controller
 {
     // 角色列表
     public function index() {
-        $group = \App\AuthGroup::orderBy('created_at', 'desc')
+        $group = \App\AuthGroup::orderBy('id', 'asc')
                ->get();
         return view('admin.group.index', compact('group'));
     }

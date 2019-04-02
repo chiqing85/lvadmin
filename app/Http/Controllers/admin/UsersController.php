@@ -10,7 +10,7 @@ class UsersController extends Controller
     public function index() {
         $user = \App\User::orderBy('created_at', 'desc')
               ->with('group:id,title')
-              ->get(['id', 'username', 'pic', 'created_at']);
+              ->get(['id', 'username', 'pic', 'created_at', 'status']);
 
         return view('admin.users.index', compact('user'));
     }

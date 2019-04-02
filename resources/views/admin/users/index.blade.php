@@ -18,6 +18,7 @@
                         <th> 用户头像 </th>
                         <th>用户角色</th>
                         <th>注册时间</th>
+                        <th>用户状态</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -43,6 +44,16 @@
                             @endforeach
                         </td>
                         <td data-value="78025368997">{{ $v->created_at }}</td>
+                        <td>
+                            <label class="ui-switch m-t-xs m-r">
+                                <input type="checkbox"
+                                       @if ($v->status)
+                                            checked
+                                       @endif
+                                       class="has-value">
+                                <i></i>
+                            </label>
+                        </td>
                         <td data-value="1">
                             <a class="btn btn-xs info"><i class="fa fa-pencil"></i> 编辑 </a>
                             <a data-url="" class="btn btn-danger btn-xs action-delete"><i class="fa fa-trash-o"></i> 删除 </a>

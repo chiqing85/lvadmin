@@ -16,7 +16,9 @@ Route::get('/', 'home\IndexController@index');
 Route::get('/login', 'admin\LoginController@index')->name('login');
 Route::post('/login', 'admin\LoginController@login');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
+Route::group([ 'prefix' => 'admin',
+               'middleware' => ['auth:web', 'check']
+             ], function () {
     // 首页
     Route::get('/', 'admin\IndexController@index');
     // 系统配置
@@ -28,4 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
     // 角色
     Route::get('/group', 'admin\GroupController@index');
 
+    // 权限节点
+    Route::get('/rule', 'admin\RuleController@index');
+    Route::get('/rule/create', 'admin\RuleController@create');
 });

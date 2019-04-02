@@ -77,7 +77,7 @@ class User extends Authenticatable
      * @fn 用户是否有权限
      * @param $permission
      */
-    public function hasPermission ( $permission ) {
-        //
+    public function isAssecc ( $RequestUri ) {
+
     }
 }
