@@ -46,12 +46,12 @@
                         </a>
                         <ul class="nav-sub config">
                             <li class="active">
-                                <a href="/admin/config" onclick="retunr false;">
+                                <a href="/admin/config">
                                     <span class="nav-text">系统设置</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/links" onclick="retunr false;">
+                                <a href="/admin/links">
                                     <span class="nav-text">友情链接</span>
                                 </a>
                             </li>
@@ -157,88 +157,14 @@
                         </a>
                         <ul class="nav-sub nav-mega nav-mega-3">
                             <li>
-                                <a href="arrow.html" >
-                                    <span class="nav-text">Arrow</span>
+                                <a href="/admin/article" >
+                                    <span class="nav-text">文章列表</span>
                                 </a>
                             </li>
+
                             <li>
-                                <a href="box.html" >
-                                    <span class="nav-text">Box</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="button.html" >
-                                    <span class="nav-text">Button</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="color.html" >
-                                    <span class="nav-text">Color</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="dropdown.html" >
-                                    <span class="nav-text">Dropdown</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="grid.html" >
-                                    <span class="nav-text">Grid</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="icon.html" >
-                                    <span class="nav-text">Icon</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="label.html" >
-                                    <span class="nav-text">Label</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="list.html" >
-                                    <span class="nav-text">List Group</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="modal.html" >
-                                    <span class="nav-text">Modal</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="nav.html" >
-                                    <span class="nav-text">Nav</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="progress.html" >
-                                    <span class="nav-text">Progress</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="social.html" >
-                                    <span class="nav-text">Social</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sortable.html" >
-                                    <span class="nav-text">Sortable</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="streamline.html" >
-                                    <span class="nav-text">Streamline</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="timeline.html" >
-                                    <span class="nav-text">Timeline</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="map.vector.html" >
-                                    <span class="nav-text">Vector Map</span>
+                                <a href="/admin/aclass" >
+                                    <span class="nav-text">文章分类</span>
                                 </a>
                             </li>
                         </ul>

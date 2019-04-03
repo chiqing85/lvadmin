@@ -4,10 +4,10 @@
         <div class="box">
             <div class="box-header b-b">
                 <i class="fa fa-fw fa-circle text-info"></i>
-                <h3>权限管理 > <a data-pjax href="/admin/rule">权限节点</a> >　添加节点</h3>
+                <h3>权限管理 > <a data-pjax href="/admin/rule">权限节点</a> >　更新节点</h3>
             </div>
             <div class="box-body">
-                <form ui-jp="parsley" id="form" method="post" action="{{ url('admin/rule/create') }}">
+                <form ui-jp="parsley" id="form" method="post" action="{{ url('admin/rule/update') }}">
                     @csrf
                     <div id="rootwizard">
                         <div class="tab-content">
@@ -25,26 +25,31 @@
                                 <div class="form-group">
                                     <label>权限名称</label>
                                     <div class="form-item-content">
-                                        <input type="text" class="form-control" required name="title">
+                                        <input type="text" class="form-control" required name="title" value="{{ $authRule->title }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>权限节点</label>
                                     <div class="form-item-content">
-                                        <input type="text" class="form-control" required name="name">
+                                        <input type="text" class="form-control" required name="name" value="{{ $authRule->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>排序</label>
                                     <div class="form-item-content">
-                                        <input type="text" class="form-control" value="100" name="sort">
+                                        <input type="text" class="form-control" value="{{ $authRule->sort }}" name="sort">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>状态</label>
                                     <div class="form-item-content">
                                         <label class="ui-switch m-t-xs m-r">
-                                            <input type="checkbox" checked value="1" class="has-value" name="status">
+                                            <input type="checkbox"
+                                                   @if($authRule->status == 1)
+                                                   checked
+                                                   value="1"
+                                                   @endif
+                                                   class="has-value" name="status">
                                             <i></i>
                                         </label>
                                     </div>

@@ -34,12 +34,11 @@ class AuthToken
                 $type = $rule[0]->pid ? '操作' : '访问';
                 $data = [
                     'code' => 403,
-                    'secc' => '很抱歉，你没有' .$type . $rule[0]->title . '模块权限'
+                    'msg' => "很抱歉，你没有".$type . "<span class='text-danger'>". $rule[0]->title. "</span>模块的权限"
                 ];
                  return response()->json($data );
             }
         }
-
         return $next($request);
     }
 }

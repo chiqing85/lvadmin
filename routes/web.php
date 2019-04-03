@@ -23,6 +23,7 @@ Route::group([ 'prefix' => 'admin',
     Route::get('/', 'admin\IndexController@index');
     // 系统配置
     Route::get('/config', 'admin\ConfigController@index');
+    Route::get('/links', 'admin\LinksController@index');
 
     // 用户
     Route::get('/users', 'admin\UsersController@index');
@@ -32,5 +33,17 @@ Route::group([ 'prefix' => 'admin',
 
     // 权限节点
     Route::get('/rule', 'admin\RuleController@index');
-    Route::get('/rule/create', 'admin\RuleController@create');
+    Route::match(['get', 'post'], '/rule/create', 'admin\RuleController@create');
+    Route::get('/rule/update/{authRule}', 'admin\RuleController@update');
+    Route::get('/rule/delete/{AuthRule}', 'admin\RuleController@delete');
+
+    // 文章管理列表
+    Route::get('/article', 'admin\ArticleController@index');
+    // 文章分类列表
+    Route::get('/aclass', 'admin\AclassController@index');
+    Route::match(['get', 'post'], '/aclass/create', 'admin\AclassController@create');
+    // 文章评论列表
+    Route::get('/comments', 'admin\CommentsController@index');
+
+
 });

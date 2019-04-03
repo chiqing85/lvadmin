@@ -111,7 +111,7 @@
 <script src="/static/admin/jquery/underscore/underscore-min.js"></script>
 <script src="/static/admin/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
 <script src="/static/admin/jquery/PACE/pace.min.js"></script>
-
+<script src="/static/layer/layer.js"></script>
 <script src="/static/admin/scripts/config.lazyload.js"></script>
 
 <script src="/static/admin/scripts/palette.js"></script>

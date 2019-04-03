@@ -7,7 +7,7 @@
                 <h3>权限节点</h3>
             </div>
             <div class="add">
-                <a href="/admin/rule/create" class="btn btn-fw white">添加节点</a>
+                <a data-pjax href="/admin/rule/create" class="btn btn-fw white">添加节点</a>
             </div>
             <div>
                 <table class="table table-bordered m-0">
@@ -44,7 +44,8 @@
                                                @if ($v->status)
                                                checked
                                                @endif
-                                               class="has-value">
+                                               class="has-value"
+                                        >
                                         <i></i>
                                     </label>
                                 </td>
@@ -52,8 +53,8 @@
                                 <td>{{ $v->updated_at }}</td>
                                 <td> {{ $v->sort }}</td>
                                 <td data-value="1">
-                                    <a class="btn btn-xs info"><i class="fa fa-pencil"></i> 编辑 </a>
-                                    <a data-url="" class="btn btn-danger btn-xs action-delete"><i class="fa fa-trash-o"></i> 删除 </a>
+                                    <a data-pjax href="{{ url("admin/rule/update/$v->id") }}" class="btn btn-xs info"><i class="fa fa-pencil"></i> 编辑 </a>
+                                    <a data-pjax href="{{ url("admin/rule/delete/$v->id") }}" class="btn btn-danger btn-xs action-delete"><i class="fa fa-trash-o"></i> 删除 </a>
                                 </td>
                             </tr>
                             @endforeach

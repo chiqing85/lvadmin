@@ -60,7 +60,6 @@ function fnPjax(selector, container, options) {
 // Returns nothing.
 function handleClick(event, container, options) {
   options = optionsFor(container, options)
-
   var link = event.currentTarget
 
   if (link.tagName.toUpperCase() !== 'A')
@@ -174,7 +173,6 @@ function pjax(options) {
   if ($.isFunction(options.url)) {
     options.url = options.url()
   }
-
   var target = options.target
 
   var hash = parseURL(options.url).hash
@@ -191,7 +189,6 @@ function pjax(options) {
   } else {
     options.data._pjax = context.selector
   }
-
   function fire(type, args, props) {
     if (!props) props = {}
     props.relatedTarget = target
@@ -229,7 +226,6 @@ function pjax(options) {
     if (hash) url.hash = hash
     options.requestUrl = stripInternalParams(url)
   }
-
   options.complete = function(xhr, textStatus) {
     if (timeoutTimer)
       clearTimeout(timeoutTimer)
@@ -249,6 +245,22 @@ function pjax(options) {
   }
 
   options.success = function(data, status, xhr) {
+
+    try{
+        if(typeof JSON.parse(data) == 'object')
+        {
+            $data = JSON.parse( data);
+            if($data.code == 200) {
+              layer.msg($data.msg, {icon: 1});
+            }
+            if( $data.code == 403) {
+                layer.msg($data.msg,{icon:5, time:2000})
+            }
+
+            return false
+        }
+    } catch (e) {
+    }
     var previousState = pjax.state;
 
     // If $.pjax.defaults.version is a function, invoke it first.
@@ -303,6 +315,7 @@ function pjax(options) {
       state: pjax.state,
       previousState: previousState
     })
+
     context.html(container.contents)
 
     // FF bug: Won't autofocus fields that are inserted via JS.

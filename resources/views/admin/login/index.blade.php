@@ -34,7 +34,7 @@
             <div class="m-b text-sm text-center">
                 <h5>后台登录</h5>
             </div>
-            <form name="form" method="post" action="/login">
+            <form name="form" method="post" action="{{ url('/login') }}">
                 {{ csrf_field() }}
                 <div class="md-form-group float-label">
                     <input type="text" class="md-input" name="username" required>
