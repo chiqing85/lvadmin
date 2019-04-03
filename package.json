@@ -1,4 +1,7 @@
 {
+    "require": {
+        "php": "^7.3"
+    },
     "private": true,
     "scripts": {
         "dev": "npm run development",
