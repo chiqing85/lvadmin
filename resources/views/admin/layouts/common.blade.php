@@ -131,5 +131,6 @@
 <script src="/static/admin/jquery/jquery-pjax/jquery.pjax.js"></script>
 <script src="/static/admin/scripts/ajax.js"></script>
 <!-- endbuild -->
+@yield('script')
 </body>
 </html>

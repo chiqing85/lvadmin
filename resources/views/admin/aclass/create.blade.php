@@ -15,8 +15,9 @@
                                     <label>分类模型</label>
                                     <div class="form-item-content">
                                         <select class="form-control c-select m-y" data-parsley-id="31" name="mid">
-                                            <option value="0">文章分类</option>
-                                            <option value="1">单页面</option>
+                                            @foreach(acmid() as $m)
+                                            <option value="{{ $m['id'] }}">{{ $m['name'] }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -29,7 +30,7 @@
                                 <div class="form-group">
                                     <label>跳转链接</label>
                                     <div class="form-item-content">
-                                        <input type="text" class="form-control" required name="dirs">
+                                        <input type="text" class="form-control" name="dirs">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -50,6 +51,7 @@
                                 <div class="clearfix"></div>
                                 <div class="form-group">
                                     @csrf
+                                    <input type="hidden" name="pid" value="{{ $pid }}">
                                     <div class="form-item-content">
                                         <button type="submit" class="btn info">提交</button>
                                     </div>

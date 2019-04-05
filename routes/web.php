@@ -13,6 +13,10 @@
 
 Route::get('/', 'home\IndexController@index');
 
+
+/**
+ * @title 后台路由
+ */
 Route::get('/login', 'admin\LoginController@index')->name('login');
 Route::post('/login', 'admin\LoginController@login');
 
@@ -42,8 +46,9 @@ Route::group([ 'prefix' => 'admin',
     // 文章分类列表
     Route::get('/aclass', 'admin\AclassController@index');
     Route::match(['get', 'post'], '/aclass/create', 'admin\AclassController@create');
+    Route::match(['get', 'post'], '/aclass/create/{id}', 'admin\AclassController@create');
+    Route::get('/aclass/delete/{Aclass}', 'admin\AclassController@delete');
     // 文章评论列表
     Route::get('/comments', 'admin\CommentsController@index');
-
 
 });
