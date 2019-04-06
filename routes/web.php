@@ -47,6 +47,8 @@ Route::group([ 'prefix' => 'admin',
     Route::get('/aclass', 'admin\AclassController@index');
     Route::match(['get', 'post'], '/aclass/create', 'admin\AclassController@create');
     Route::match(['get', 'post'], '/aclass/create/{id}', 'admin\AclassController@create');
+    Route::match(['get', 'post'], '/aclass/update/{aclass}', 'admin\AclassController@update');
+
     Route::get('/aclass/delete/{Aclass}', 'admin\AclassController@delete');
     // 文章评论列表
     Route::get('/comments', 'admin\CommentsController@index');

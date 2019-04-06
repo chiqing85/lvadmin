@@ -8,14 +8,17 @@ use App\Http\Controllers\Controller;
 
 class AclassController extends Controller
 {
-    // 分类列表
+    /**
+     * @title 分类列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index() {
 
         $aclass = \App\Aclass::orderBy('sort', 'desc')
                   ->get(['id', 'name', 'dirs', 'mid','sort','pid', 'status']);
 
         $aclass = create($aclass);
-
+        //  无限分类是否有子类
         foreach ($aclass as $k => $v) {
             foreach ($aclass as $s)
                 if($v['id'] == $s['pid']) {
@@ -35,6 +38,7 @@ class AclassController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function create(Request $request) {
+
         if( $request->isMethod('get') ) {
             $pid = request('id') ? request('id') : 0;
             return view('admin.aclass.create', compact('pid'));
@@ -51,7 +55,19 @@ class AclassController extends Controller
     }
 
     public function update(Aclass $aclass) {
-        return view('admin.aclass.update', compact('aclass'));
+        if(request()->isMethod('get')) {
+            return view('admin.aclass.update', compact('aclass'));
+        } else {
+            $this->validate(request(), [
+                'mid' => 'required|numeric',
+                'name' => 'required',
+                'pid' => 'required'
+            ]);
+            $data = request(['mid', 'name', 'dirs', 'sort', 'status', 'pid']);
+            $data['status'] = request('status') ? request('status') : 0;
+            $aclass->update($data);
+            return redirect('/admin/aclass');
+        }
     }
 
     /**

@@ -79,15 +79,14 @@
                     </li>
                     <li>
                         <a>
-                    <span class="nav-caret">
-                      <i class="fa fa-caret-down"></i>
-                    </span>
-
-                    <span class="nav-icon">
-                      <i class="material-icons">&#xe8d2;
-                        <span ui-include="'/static/admin/images/i_3.svg'"></span>
-                      </i>
-                    </span>
+                            <span class="nav-caret">
+                              <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                              <i class="material-icons">&#xe8d2;
+                                <span ui-include="'/static/admin/images/i_3.svg'"></span>
+                              </i>
+                            </span>
                             <span class="nav-text">权限管理</span>
                         </a>
                         <ul class="nav-sub nav-mega nav-mega-3">
@@ -110,49 +109,18 @@
                     </li>
 
                     <li>
-                            <a>
-                        <span class="nav-caret">
-                          <i class="fa fa-caret-down"></i>
-                        </span>
-                                <span class="nav-icon">
-                          <i class="material-icons">&#xe8f0;
-                            <span ui-include="'/static/admin/images/i_2.svg'"></span>
-                          </i>
-                        </span>
-                                <span class="nav-text">用户管理</span>
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a href="headers.html" >
-                                        <span class="nav-text">Header</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="asides.html" >
-                                        <span class="nav-text">Aside</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="footers.html" >
-                                        <span class="nav-text">Footer</span>
-                                    </a>
-                                </li>
-                            </ul>
-                    </li>
-
-                    <li>
                         <a>
-                    <span class="nav-caret">
-                      <i class="fa fa-caret-down"></i>
-                    </span>
+                            <span class="nav-caret">
+                              <i class="fa fa-caret-down"></i>
+                            </span>
                             <span class="nav-label">
-                      <b class="label label-sm accent">8</b>
-                    </span>
+                              <b class="label label-sm accent">8</b>
+                            </span>
                             <span class="nav-icon">
-                      <i class="material-icons">&#xe429;
-                        <span ui-include="'/static/admin/images/i_4.svg'"></span>
-                      </i>
-                    </span>
+                              <i class="material-icons">&#xe429;
+                                <span ui-include="'/static/admin/images/i_4.svg'"></span>
+                              </i>
+                            </span>
                             <span class="nav-text">文章管理</span>
                         </a>
                         <ul class="nav-sub nav-mega nav-mega-3">
@@ -161,7 +129,11 @@
                                     <span class="nav-text">文章列表</span>
                                 </a>
                             </li>
-
+                            <li>
+                                <a href="/admin/common" >
+                                    <span class="nav-text">文章评论</span>
+                                </a>
+                            </li>
                             <li>
                                 <a href="/admin/aclass" >
                                     <span class="nav-text">文章分类</span>
@@ -169,94 +141,6 @@
                             </li>
                         </ul>
                     </li>
-
-                    <li>
-                        <a>
-                    <span class="nav-caret">
-                      <i class="fa fa-caret-down"></i>
-                    </span>
-                            <span class="nav-label"><b class="label no-bg">9</b></span>
-                            <span class="nav-icon">
-                      <i class="material-icons">&#xe3e8;
-                        <span ui-include="'/static/admin/images/i_5.svg'"></span>
-                      </i>
-                    </span>
-                            <span class="nav-text">评论管理</span>
-                        </a>
-                        <ul class="nav-sub nav-mega">
-                            <li>
-                                <a href="profile.html" >
-                                    <span class="nav-text">Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="setting.html" >
-                                    <span class="nav-text">Setting</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="search.html" >
-                                    <span class="nav-text">Search</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="faq.html" >
-                                    <span class="nav-text">FAQ</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gallery.html" >
-                                    <span class="nav-text">Gallery</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="invoice.html" >
-                                    <span class="nav-text">Invoice</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="price.html" >
-                                    <span class="nav-text">Price</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blank.html" >
-                                    <span class="nav-text">Blank</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="signin.html" >
-                                    <span class="nav-text">Sign In</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="signup.html" >
-                                    <span class="nav-text">Sign Up</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forgot-password.html" >
-                                    <span class="nav-text">Forgot Password</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="lockme.html" >
-                                    <span class="nav-text">Lockme Screen</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="404.html" >
-                                    <span class="nav-text">Error 404</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="505.html" >
-                                    <span class="nav-text">Error 505</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
                     <li>
                         <a>
                     <span class="nav-caret">
@@ -312,116 +196,6 @@
                             </li>
                         </ul>
                     </li>
-
-                    <li>
-                        <a>
-                    <span class="nav-caret">
-                      <i class="fa fa-caret-down"></i>
-                    </span>
-                            <span class="nav-icon">
-                      <i class="material-icons">&#xe896;
-                        <span ui-include="'/static/admin/images/i_7.svg'"></span>
-                      </i>
-                    </span>
-                            <span class="nav-text">Tables</span>
-                        </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="static.html" >
-                                    <span class="nav-text">Static table</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="datatable.html" >
-                                    <span class="nav-text">Datatable</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="footable.html" >
-                                    <span class="nav-text">Footable</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>
-                    <span class="nav-caret">
-                      <i class="fa fa-caret-down"></i>
-                    </span>
-                            <span class="nav-label hidden-folded">
-                      <b class="label label-sm info">N</b>
-                    </span>
-                            <span class="nav-icon">
-                      <i class="material-icons">&#xe1b8;
-                        <span ui-include="'/static/admin/images/i_8.svg'"></span>
-                      </i>
-                    </span>
-                            <span class="nav-text">Charts</span>
-                        </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="chart.html" >
-                                    <span class="nav-text">Chart</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                        <span class="nav-caret">
-                          <i class="fa fa-caret-down"></i>
-                        </span>
-                                    <span class="nav-text">Echarts</span>
-                                </a>
-                                <ul class="nav-sub">
-                                    <li>
-                                        <a href="echarts-line.html" >
-                                            <span class="nav-text">line</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="echarts-bar.html" >
-                                            <span class="nav-text">Bar</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="echarts-pie.html" >
-                                            <span class="nav-text">Pie</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="echarts-scatter.html" >
-                                            <span class="nav-text">Scatter</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="echarts-radar-chord.html" >
-                                            <span class="nav-text">Radar &amp; Chord</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="echarts-gauge-funnel.html" >
-                                            <span class="nav-text">Gauges &amp; Funnel</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="echarts-map.html" >
-                                            <span class="nav-text">Map</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-header hidden-folded">
-                        <small class="text-muted">Help</small>
-                    </li>
-
-                    <li class="hidden-folded" >
-                        <a href="docs.html" >
-                            <span class="nav-text">Documents</span>
-                        </a>
-                    </li>
-
                 </ul>
             </nav>
         </div>

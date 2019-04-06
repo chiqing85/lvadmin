@@ -49,9 +49,9 @@
                                     <td>
                                         @if($v->pid !== 0)
                                             @if($v->level == 2)
-                                                |--　|--　
+                                                |——　|——　　
                                             @else
-                                                |-- 　
+                                                |——　 　
                                             @endif
                                         @endif
                                         {{ $v->name }}
@@ -85,24 +85,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        $('.aclass-open').click(function () {
-            var oid = $(this).attr('oid');
-            if($(this).text() == ' ') {
-                $(this).text(' ');
-                $('.pid_'+ oid).show();
-            } else {
-                $(this).text(' ');
-                var coid = $(".pid_"+oid + ' .aclass-open').attr('oid');
-                if($(".pid_"+oid + ' .aclass-open').text() == " ") {
-                    $(".pid_"+oid + ' .aclass-open').text(' ');
-                }
-                $('.pid_'+ coid).hide();
-                $('.pid_'+ oid).hide();
-            }
-        });
-    </script>
 @endsection
