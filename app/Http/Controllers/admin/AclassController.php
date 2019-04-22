@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class AclassController extends Controller
 {
+    protected $val = array(
+        'mid' => 'required|numeric',
+        'name' => 'required',
+        'pid' => 'required'
+    );
     /**
      * @title 分类列表
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -43,11 +48,7 @@ class AclassController extends Controller
             $pid = request('id') ? request('id') : 0;
             return view('admin.aclass.create', compact('pid'));
         } else {
-            $this->validate($request, [
-                'mid' => 'required|numeric',
-                'name' => 'required',
-                'pid' => 'required'
-            ]);
+            $this->validate($request, $this->val );
             $data = request(['mid', 'name', 'dirs', 'sort', 'status', 'pid']);
             Aclass::create($data);
             return back();
@@ -58,11 +59,7 @@ class AclassController extends Controller
         if(request()->isMethod('get')) {
             return view('admin.aclass.update', compact('aclass'));
         } else {
-            $this->validate(request(), [
-                'mid' => 'required|numeric',
-                'name' => 'required',
-                'pid' => 'required'
-            ]);
+            $this->validate(request(), $this->val);
             $data = request(['mid', 'name', 'dirs', 'sort', 'status', 'pid']);
             $data['status'] = request('status') ? request('status') : 0;
             $aclass->update($data);

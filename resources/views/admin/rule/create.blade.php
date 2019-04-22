@@ -4,7 +4,7 @@
         <div class="box">
             <div class="box-header b-b">
                 <i class="fa fa-fw fa-circle text-info"></i>
-                <h3>权限管理 > <a data-pjax href="/admin/rule">权限节点</a> >　添加节点</h3>
+                <h3>权限管理 > <a data-pjax href="/admin/rule">权限节点</a> > 添加</h3>
             </div>
             <div class="box-body">
                 <form ui-jp="parsley" id="form" method="post" action="{{ url('admin/rule/create') }}">
@@ -17,8 +17,19 @@
                                     <div class="form-item-content">
                                         <select class="form-control c-select m-y" data-parsley-id="31" name="pid">
                                             <option value="0">默认顶级</option>
-                                            <option value="foo">Foo</option>
-                                            <option value="bar">Bar</option>
+                                            @foreach( $rule as $k => $v)
+                                            <option
+                                                value="{{ $v->id }}"
+                                                @if( $v->level == 2)
+                                                disabled
+                                                @endif
+                                            >
+                                                @if( $v->level == 1) 　　├ {{ $v->title }}
+                                                @elseif($v->level == 2)　　│　　├ {{ $v->title }}
+                                                @else {{ $v->title }}
+                                                @endif
+                                            </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -31,13 +42,28 @@
                                 <div class="form-group">
                                     <label>权限节点</label>
                                     <div class="form-item-content">
-                                        <input type="text" class="form-control" required name="name">
+                                        <input type="text" class="form-control" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>是否菜单</label>
+                                    <div class="form-item-content">
+                                        <select class="form-control c-select m-y" data-parsley-id="31" name="menu">
+                                            <option value="0">是</option>
+                                            <option value="1">否</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>节点图标</label>
+                                    <div class="form-item-content">
+                                        <input type="text" class="form-control" name="icon">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>排序</label>
                                     <div class="form-item-content">
-                                        <input type="text" class="form-control" value="100" name="sort">
+                                        <input type="text" class="form-control" value="100" name="sorts">
                                     </div>
                                 </div>
                                 <div class="form-group">

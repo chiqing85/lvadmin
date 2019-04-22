@@ -31,6 +31,8 @@ class CreateAuthGroupTable extends Migration
             $table->mediumInteger('id', 8);
             $table->char('name', 80);
             $table->char('title', 20);
+            $table->tinyInteger('menu')->default( 0);
+            $table->char('icon', 80);
             $table->tinyInteger('type')->default(1);
             $table->tinyInteger('status')->default(1);
             $table->char('condition', 100);

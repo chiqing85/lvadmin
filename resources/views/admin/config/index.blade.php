@@ -7,66 +7,40 @@
                 <h3>系统设置</h3>
             </div>
             <div class="box-body">
-                <form ui-jp="parsley" id="form">
+                <form ui-jp="parsley" id="form" action="{{ url("/admin/config/update") }}">
                     <div id="rootwizard">
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
-                                <div class="form-group">
-                                    <label>网站地址</label>
-                                    <div class="form-item-content">
-                                        <input type="text" class="form-control" required>
-                                        <small class="text-muted">网站域名（如：http://www.google.com）,后面不带斜线</small>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>网站名称</label>
-                                    <div class="form-item-content">
-                                        <input type="text" class="form-control" required>
-                                        <small class="text-muted">网站标题</small>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>网站LOGO</label>
-                                    <div class="form-item-content">
-                                        <div class="input-group">
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-btn">
-                                                <button class="btn white" type="button">Go!</button>
-                                              </span>
+                                @foreach ( $config as $k => $v)
+                                    <div class="form-group">
+                                        <label> {{ $v->desc }}</label>
+                                        <div class="form-item-content">
+                                            @if( $v->texttype == 'text')
+                                                <input type="text" class="form-control" name="{{ $v->k }}" placeholder="{{ $v->v }}">
+                                            @elseif($v->texttype == "file")
+                                                <div class="input-group">
+                                                    <div class="ivu-upload" style="display: inline-block; width: 58px;">
+                                                        <div class="ivu-upload ivu-upload-drag">
+                                                            <input type="hidden" class="form-control file_img" name="{{ $v->k }}" placeholder="{{ $v->v }}">
+                                                            <input type="file" class="file-invisible file-config upload" accept="image/jpg,image/jpeg,image/png">
+                                                            <div style="width: 58px; height: 58px; line-height: 58px;">
+                                                                @if( $v->v )
+                                                                    <img src="{{ $v->v }}" class="upload_img">
+                                                                @else
+                                                                <img src="" class="upload_img" style="display: none">
+                                                                <i class="material-icons" style="line-height: 58px;">&#xe412;</i>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                     </div>
+                                                </div>
+                                            @elseif( $v->texttype == "textarea")
+                                                <textarea name="{{ $v->k }}" id="" cols="30" rows="3" class="form-control" placeholder="{{ $v->v }}"></textarea>
+                                            @endif
+                                                <small class="text-muted"> {{ $v->prompt }}</small>
                                         </div>
-                                        <small class="text-muted">网站LOGO，一般用于导航或底部的LOGO图片</small>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>网站关键字</label>
-                                    <div class="form-item-content">
-                                        <input type="text" class="form-control" required>
-                                        <small class="text-muted">网站关键字，网站首页的【keywords】</small>>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>网站描述</label>
-                                    <div class="form-item-content">
-                                        <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
-                                        <small class="text-muted">网站描述，网站首页的【description】</small>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>版权信息</label>
-                                    <div class="form-item-content">
-                                        <input type="text" class="form-control" required>
-                                        <small class="text-muted">您网站的版权信息</small>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>备案号</label>
-                                    <div class="form-item-content">
-                                        <input type="text" class="form-control" required>
-                                        <small class="text-muted">域名备案号</small>
-                                    </div>
-                                </div>
-
+                                @endforeach
                             </div>
                         </div>
                     </div>

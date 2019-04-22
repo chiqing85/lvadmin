@@ -20,3 +20,29 @@ function acmid() {
     $aclass = require("json/aclass.php");
     return $aclass;
 }
+
+function Getiplookup( $ip ) {
+    if( $ip == '127.0.0.1') return '本地测试';
+    $api = 'http://ip.taobao.com/service/getIpInfo.php?ip='. $ip;
+    $json = @file_get_contents($api);//调用新浪IP地址库
+    $arr = json_decode($json,true);
+    $arr = $arr['data'];
+    $country = $arr['country']; //国家
+    $province = $arr['region']; //省份
+    $city = $arr['city']; //城市
+    $lookup = $country. ' '.$province.' '.$city;
+    return $lookup;
+}
+
+function le($data, $pid = 0, $level = 0, $html = ""){
+    $arr = array();
+    foreach ($data as $v) {
+        if($v['pid'] == $pid) {
+            $v['level'] = $level;
+            $v['html'] = str_repeat($html, $level);
+            $arr[] =$v;
+            $arr = array_merge($arr, le($data, $v['id'], $level + 1, $html  = '|—　'));
+        }
+    }
+    return $arr;
+};

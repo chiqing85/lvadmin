@@ -13,6 +13,8 @@
     <meta name="apple-mobile-web-app-title" content="Flatkit">
     <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
     <meta name="mobile-web-app-capable" content="yes">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- style -->
     <link rel="stylesheet" href="/static/admin/animate.css/animate.min.css" type="text/css" />
     <link rel="stylesheet" href="/static/admin/glyphicons/glyphicons.css" type="text/css" />
@@ -62,7 +64,6 @@
 <script src="/static/admin/scripts/ui-toggle-class.js"></script>
 
 <script src="/static/admin/scripts/app.js"></script>
-
 <!-- ajax -->
 <script src="/static/admin/jquery/jquery-pjax/jquery.pjax.js"></script>
 <script src="/static/admin/scripts/ajax.js"></script>
@@ -76,7 +77,6 @@
         } else {
             $(this).text(' ');
             var open = $(".pid_"+oid + ' .aclass-open');
-
             var coid = open.attr('oid');
             if(open.text() == " ") {
                 open.text(' ');
@@ -85,6 +85,27 @@
             $('.pid_'+ oid).hide();
         }
     });
+
+    $(document).on('change', 'input.upload', ()=> {
+        var formData = new FormData();
+        formData.append('images', $("input.upload")[0].files[0]);
+        $.ajax({
+            url: '/admin/upload/image',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            // 鍛婅瘔jQuery涓嶈鍘诲鐞嗗彂閫佺殑鏁版嵁
+            processData : false,
+            // 鍛婅瘔jQuery涓嶈鍘昏缃瓹ontent-Type璇锋眰澶�
+            contentType : false,
+            success: function (v) {
+                $('input.file_img').val( v );
+                $('.upload_img').show().attr('src', v);
+            }
+        });
+    })
 </script>
 </body>
 </html>

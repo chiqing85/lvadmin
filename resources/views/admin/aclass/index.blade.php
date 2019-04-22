@@ -49,12 +49,13 @@
                                     <td>
                                         @if($v->pid !== 0)
                                             @if($v->level == 2)
-                                                |——　|——　　
+                                                <span class="l2">
                                             @else
-                                                |——　 　
+                                               <span class="l1">
                                             @endif
                                         @endif
                                         {{ $v->name }}
+                                        </span>
                                     </td>
                                     <td>{{ acmid()[$v->mid]['name'] }}</td>
                                     <td> {{ $v->dirs }}</td>
@@ -85,4 +86,12 @@
             </div>
         </div>
     </div>
+    <style>
+        span.l1 {
+            margin-left: 1.5rem;
+        }
+        span.l2 {
+            margin-left: 3rem;
+        }
+    </style>
 @endsection

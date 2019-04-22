@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthRuleAdd extends Migration
+class CreateLoginlogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateAuthRuleAdd extends Migration
      */
     public function up()
     {
-        Schema::table('auth_rule', function (Blueprint $table) {
-            $table->smallInteger('sorts')->default(100);
-            $table->integer('pid');
+        Schema::create('loginlog', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('uid', 60);
+            $table->string('ip', 16);
+            $table->text('location');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ class CreateAuthRuleAdd extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auth_rule');
+        Schema::dropIfExists('loginlog');
     }
 }

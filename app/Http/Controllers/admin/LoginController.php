@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -24,6 +25,12 @@ class LoginController extends Controller
         $user = \request(['username', 'password']);
         $is_remember = boolval(\request(['is_remember']));
         if(\Auth::attempt($user, $is_remember)) {
+            $data = array (
+                'uid' => Auth::id(),
+                'ip' => request()->getClientIp(),
+                'location' => Getiplookup( request()->getClientIp() )
+            );
+            \App\Loginlog::create( $data );
             // 成功跳转
             return redirect('/admin');
         }

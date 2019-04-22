@@ -3,16 +3,31 @@
 namespace App\Http\Controllers\admin;
 
 use App\AuthRule;
+use App\logic\RuleLogic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Validation\Rule;
 
 class RuleController extends Controller
 {
-    // 节点展显
+    /**
+     * @title 验证
+     * @var array
+     */
+    protected $rule = array(
+        'title' => 'required',
+        'menu' => 'integer',
+        'status' => 'integer'
+    );
 
+    /**
+     * @title 权限节点
+     * @return View
+     */
     public function index() {
-        $rule = \App\AuthRule::orderBy('sort', 'desc')
-              ->get();
+        $rule = RuleLogic::get();
+        $rule['items'] = create( $rule );
         return view('admin.rule.index', compact('rule'));
     }
 
@@ -25,21 +40,23 @@ class RuleController extends Controller
     public function create(Request $request) {
 
          if( $request->isMethod('get') ) {
-            return view('admin.rule.create');
+             $rule = create( RuleLogic::get() );
+            return view('admin.rule.create', compact('rule') );
         } else {
-             $this->validate($request, [
-                'title' => 'required',
-                 'name' => 'required',
-                 'status' => 'integer'
-             ]);
-             $params = request(['title', 'name', 'pid', 'status']);
-             AuthRule::create( $params );
-             return back();
+             $this->validate($request, $this->rule);
+             Cache::forget('rule');
+             return RuleLogic::create();
         }
     }
 
     public function update(AuthRule $authRule) {
-        return view('admin.rule.update', compact('authRule'));
+        if( request()->isMethod('get')) {
+            $rule = create( RuleLogic::get() );
+            return view('admin.rule.update', compact( [ 'authRule', 'rule'] ));
+        } else {
+            $this->validate( request(), $this->rule);
+            return RuleLogic::up( $authRule );
+        }
     }
 
     /**
@@ -50,6 +67,7 @@ class RuleController extends Controller
      */
     public function delete( AuthRule $AuthRule) {
         $AuthRule->delete();
+        Cache::forget('rule');
         return back();
     }
 

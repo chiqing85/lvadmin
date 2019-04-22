@@ -113,12 +113,12 @@ return [
     */
 
     'attributes' => [
-        // 'name'         => '名字',
-        // 'age'         => '年龄',
+         'username'         => '用户名',
         'captcha'        => '验证码',
         'password'       => '密码',
         'user'           => '用户名',
-
+        'link_name'     => '友链名称',
+        'link_url'      => '友情链接',
     ],
 
 

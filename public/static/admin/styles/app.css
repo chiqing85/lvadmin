@@ -202,7 +202,7 @@ sup {
 .btn-icon {
   text-align: center;
   padding: 0 !important;
-  width: 2.375rem;
+  width: 4.15rem;
   height: 2.375rem;
   line-height: 2.375rem;
   position: relative;
@@ -222,9 +222,9 @@ sup {
     height: 1.5rem;
     line-height: 1.5rem; }
   .btn-icon.btn-sm {
-    width: 1.775rem;
-    height: 1.775rem;
-    line-height: 1.775rem; }
+    width: 3.2rem;
+    height: 1.7rem;
+    line-height: 1.7rem; }
   .btn-icon.btn-lg {
     width: 3.167rem;
     height: 3.167rem;
@@ -974,7 +974,7 @@ a.list-group-item {
   display: inline;
   list-style: none; }
 
-.pagination > li > a {
+.pagination > li > a, .pagination > li > span {
   position: relative;
   float: left;
   padding: 0.5rem 0.75rem;
@@ -5478,7 +5478,8 @@ textarea.md-input {
   padding-left: 1.25rem;
   margin: 0;
   display: inline-block;
-  position: relative; }
+  position: relative;
+  text-align: left; }
   .md-check input {
     position: absolute;
     cursor: pointer;
@@ -5537,7 +5538,7 @@ textarea.md-input {
       position: absolute;
       width: 18px;
       height: 100%;
-      border: 2px solid #9e9e9e;
+      border: 1px solid #78828c33;
       border-radius: 2px; }
     .md-check > i.no-icon:after {
       display: none !important; }
@@ -5691,10 +5692,10 @@ textarea.md-input {
   -webkit-animation: fadeOutDown 0.5s;
   animation: fadeOutDown 0.5s; }
 
-.alert.alert-danger.login {
+.error {
   position: absolute;
   right: 5px;
-  top: 5px; }
+  top: 65px; }
 
 .form-item-content {
   margin-left: 100px;
@@ -5714,4 +5715,81 @@ textarea.md-input {
 }
 .box .add {
     padding: 1rem 0;
+}
+.form-control {
+  font-size: 13px;
+}
+input.file-invisible.file-config {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 60px;
+  height: 58px;
+  overflow: hidden;
+  bottom: auto;
+  right: auto;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+.ivu-upload.ivu-upload-drag {
+  background: #fff;
+  border: 1px dashed #dcdee2;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: border-color .2s ease;
+  transition: border-color .2s ease;
+}
+.ivu-upload-drag:hover {
+  border: 1px dashed #09c;
+}
+img.upload_img {
+  width: 100%;
+}
+.form-check {
+  display: flow-root;
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 47px;
+}
+.table>tbody tr:hover {
+    background: #ebf7ff !important;
+}
+span.form-check .md-check input {
+  width: 18px;
+  height: 18px;
+  margin-left: -1.7rem;
+}
+span.form-check .md-check.left_0 {
+  display: block;
+  background: #f5f7fc;
+  clear: both;
+  margin-bottom: 0px;
+}
+span.form-check .md-check.left_1 {
+  padding-left: 2em;
+  float: left;
+  margin-bottom: 14px;
+  clear: both;
+}
+span.form-check .md-check.left_2 {
+  margin-left: 0px;
+  clear: none;
+  float: left;
+}
+span.form-check .md-check {
+  padding: 0.5rem;
+}
+span.form-check .md-check > i {
+  margin-left: 0;
+}
+i.create_i {
+  font-style: normal;
+  font-size: 11px;
+}
+.form-check.users>.md-check {
+    padding: unset;
 }

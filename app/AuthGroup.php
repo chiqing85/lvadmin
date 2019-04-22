@@ -8,6 +8,7 @@ class AuthGroup extends Model
 {
     // 角色表
     protected $table = 'auth_group';
+    protected $guarded = [];
 
     // 当前角色的所有权限
     public function access () {

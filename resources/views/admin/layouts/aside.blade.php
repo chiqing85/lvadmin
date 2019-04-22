@@ -17,7 +17,6 @@
                     <li class="nav-header hidden-folded">
                         <small class="text-muted">Main</small>
                     </li>
-
                     <li>
                         <a href="/admin" >
                     <span class="nav-icon">
@@ -31,17 +30,15 @@
 
                     <li>
                         <a>
-                    <span class="nav-caret">
-                      <i class="fa fa-caret-down"></i>
-                    </span>
-                            <span class="nav-label">
-                      <b class="label rounded label-sm primary">5</b>
-                    </span>
+                            <span class="nav-caret">
+                              <i class="fa fa-caret-down"></i>
+                            </span>
                             <span class="nav-icon">
-                      <i class="material-icons">&#xe5c3;
-                        <span ui-include="'/static/admin/images/i_1.svg'"></span>
-                      </i>
-                    </span>
+                              <i class="material-icons">
+                                  &#xe5c3;
+                                  <span ui-include="'/static/admin/images/i_1.svg'"></span>
+                              </i>
+                            </span>
                             <span class="nav-text">系统</span>
                         </a>
                         <ul class="nav-sub config">
@@ -56,23 +53,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/login_log" >
+                                <a href="/admin/login_log">
                                     <span class="nav-text">登录日志</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="inbox.html" >
-                                    <span class="nav-text">Inbox</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="contact.html" >
-                                    <span class="nav-text">Contacts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="calendar.html" >
-                                    <span class="nav-text">Calendar</span>
+                                <a href="/admin/cache">
+                                    <span class="nav-text">清除缓存</span>
                                 </a>
                             </li>
                         </ul>

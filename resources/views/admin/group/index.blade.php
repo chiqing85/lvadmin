@@ -7,7 +7,10 @@
                 <h3>角色列表</h3>
             </div>
             <div class="add">
-                <button class="btn btn-fw white">添加角色</button>
+                <a data-pjax href="{{ url('/admin/group/create') }}" class="btn btn-icon btn-social white btn-social-colored light-blue">
+                    <i class="material-icons">&#xe145;</i>
+                    <i class="create_i">添加</i>
+                </a>
             </div>
             <div>
                 <table class="table table-bordered m-0">
@@ -45,8 +48,8 @@
                                 <td data-value="78025368997">{{ $v->created_at }}</td>
                                 <td>{{ $v->updated_at }}</td>
                                 <td data-value="1">
-                                    <a class="btn btn-xs info"><i class="fa fa-pencil"></i> 编辑 </a>
-                                    <a data-url="" class="btn btn-danger btn-xs action-delete"><i class="fa fa-trash-o"></i> 删除 </a>
+                                    <a data-pjax href="{{ url("admin/group/update/$v->id") }}" class="btn btn-icon btn-social white btn-sm info"><i class="fa fa-pencil"></i><i class="create_i"> 编辑 </i></a>
+                                    <a data-pjax href="{{ url("admin/group/delete/$v->id") }}" class="btn btn-danger btn-icon btn-social btn-sm action-delete"><i class="fa fa-trash-o"></i><i class="create_i"> 删除 </i></a>
                                 </td>
                             </tr>
                             @endforeach

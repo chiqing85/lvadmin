@@ -8,5 +8,4 @@ class AuthGroupAccess extends Model
 {
     protected $table = 'auth_group_access';
 
-
 }

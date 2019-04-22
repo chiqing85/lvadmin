@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88a675c01f1a94a9c52a1df7c2f0506e",
+    "content-hash": "0a2ac7f14802870f5897b1f738532b52",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1125,6 +1125,52 @@
                 "psr-3"
             ],
             "time": "2018-11-05T09:00:11+00:00"
+        },
+        {
+            "name": "mushan/baidu-tongji",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mushan0703/BaiduTongji.git",
+                "reference": "493b117293a988df2d533c69959cf104d9bfccd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mushan0703/BaiduTongji/zipball/493b117293a988df2d533c69959cf104d9bfccd8",
+                "reference": "493b117293a988df2d533c69959cf104d9bfccd8",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mushan\\BaiduTongji\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mushan",
+                    "email": "804216865@qq.com"
+                }
+            ],
+            "description": "Laravel 百度统计集成包",
+            "keywords": [
+                "baidu-tongji",
+                "laravel"
+            ],
+            "time": "2017-03-28T07:29:56+00:00"
         },
         {
             "name": "nesbot/carbon",
