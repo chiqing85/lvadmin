@@ -64,11 +64,6 @@
                     </div>
                     <div class="box-tool">
                         <ul class="nav">
-                            <li class="nav-item inline">
-                                <a class="nav-link">
-                                    <i class="material-icons md-18">&#xe863;</i>
-                                </a>
-                            </li>
                             <li class="nav-item inline dropdown">
                                 <a class="nav-link" data-toggle="dropdown">
                                     <i class="material-icons md-18">&#xe5d4;</i>
@@ -81,24 +76,13 @@
                         </ul>
                     </div>
                     <div class="box-body">
-                        {{--<div class="text-center m-b">
-                            <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-sm white">
-                                    <input type="radio" name="options" autocomplete="off"> Month
-                                </label>
-                                <label class="btn btn-sm white">
-                                    <input type="radio" name="options" autocomplete="off"> Day
-                                </label>
-                            </div>
-                        </div>--}}
                         <div ui-jp="plot" ui-refresh="app.setting.color" ui-options='
                         [
                             {
                                 name: "PV",
                                 label: "PV",
                                 data:[
-                                        ["15",311],["14",230],["13",92],["12",78],["11",109],["10",77],["09",126],["08",154],
-                                        ["07",201],["06",167],["05",179],["04",208],["03",218],["02",192],["01",225]
+                                       {{ $bdtj['pv'] }}
                                     ],
                                 points:{
                                  show:true,
@@ -114,8 +98,7 @@
                             {
                                 label: "UV",
                                 data:[
-                                    ["15",5],["14",25],["13",4],["12",3],["11",3],["10",7],["09",3],
-                                    ["08",4],["07",5],["06",4],["05",5],["04",5],["03",3],["02",5],["01",2]
+                                    {{ $bdtj['uv'] }}
                                 ],
                                 points:{ show:true,radius:0 },
                                 splines:{
@@ -129,8 +112,7 @@
                                 name: "IP",
                                 label: "IP",
                                 data:[
-                                    ["15",5],["14",19],["13",4],["12",4],["11",5],["10",7],["09",3],
-                                    ["08",3],["07",3],["06",3],["05",4],["04",5],["03",4],["02",5],["01",2]
+                                    {{ $bdtj['ip'] }}
                                 ],
                                 points:{
                                     legend: {
@@ -198,6 +180,37 @@
         </div>
         </div>
         <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="box">
+                    <div class="box-header">
+                        <i class="fa fa-sign-in"></i>
+                        <h3>登录日志</h3>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width:60px;" class="text-center">IP</th>
+                            <th>用户</th>
+                            <td>位置</td>
+                            <th>时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach( $loginlog as $v)
+                            <tr>
+                                <td> {{ $v->ip }} </td>
+                                <td>{{ $v->user['username'] }}</td>
+                                <td> {{ $v->location }}</td>
+                                <td class="text-warning">
+                                    <i class="fa fa-level-up"></i>
+                                    {{ time_lin( $v->created_at ) }}
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="col-sm-12 col-md-6">
                 <div class="box">
                     <div class="box-header">
@@ -296,100 +309,6 @@
                             </div>
                         </li>
                     </ul>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <div class="box">
-                    <div class="box-header">
-                        <h3>Stats</h3>
-                        <small>Your data status</small>
-                    </div>
-                    <div class="box-tool">
-                        <ul class="nav">
-                            <li class="nav-item inline">
-                                <a class="nav-link">
-                                    <i class="material-icons md-18">&#xe863;</i>
-                                </a>
-                            </li>
-                            <li class="nav-item inline dropdown">
-                                <a class="nav-link" data-toggle="dropdown">
-                                    <i class="material-icons md-18">&#xe5d4;</i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-scale pull-right">
-                                    <a class="dropdown-item" href>This week</a>
-                                    <a class="dropdown-item" href>This month</a>
-                                    <a class="dropdown-item" href>This week</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item">Today</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th style="width:60px;" class="text-center">Graph</th>
-                            <th>Item</th>
-                            <th style="width:70px;"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div ui-jp="sparkline" ui-refresh="app.setting.color" ui-options="[ 16,15,15,14,17,18,16,15,16 ], {type:'bar', height:19, barWidth:4, barSpacing:2, barColor:'#0cc2aa'}" class="sparkline inline">loading...</div>
-                            </td>
-                            <td>App downloads</td>
-                            <td class="text-success">
-                                <i class="fa fa-level-up"></i> 40%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <div ui-jp="sparkline" ui-refresh="app.setting.color" ui-options="[ 60,30,10 ], {type:'pie', height:19, sliceColors:['#fcc100','#fff','#0cc2aa']}" class="sparkline inline">loading...</div>
-                            </td>
-                            <td>Social connection</td>
-                            <td class="text-success">
-                                <i class="fa fa-level-up"></i> 20%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div ui-jp="sparkline" ui-refresh="app.setting.color" ui-options="[ 16,15,15,14,17,18,16,15,16 ], {type:'line', height:19, width:60, lineColor:'#0cc2aa', fillColor:'transparent'}" class="sparkline inline">loading...</div>
-                            </td>
-                            <td>Revenue</td>
-                            <td class="text-warning">
-                                <i class="fa fa-level-down"></i> 5%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div ui-jp="sparkline" ui-refresh="app.setting.color" ui-options="[ 16,15,15,14,17,18,16,15,16 ], {type:'discrete', height:19, width:60, lineColor:'#6cc788'}" class="sparkline inline">loading...</div>
-                            </td>
-                            <td>Customer increase</td>
-                            <td class="text-danger">
-                                <i class="fa fa-level-down"></i> 20%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div ui-jp="sparkline" ui-refresh="app.setting.color" ui-options="[ 16,15,15,14,17,18,16,15,16 ], {type:'line', height:19, width:60, lineColor:'#fcc100', fillColor:'#fcc100'}" class="sparkline inline">loading...</div>
-                            </td>
-                            <td>Order placed</td>
-                            <td class="text-warning">
-                                <i class="fa fa-level-down"></i> 5%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div ui-jp="sparkline" ui-refresh="app.setting.color" ui-options="[ 16,15,15,16,15,16,14,17,18 ], {type:'line', height:19, width:60, lineColor:'#fcc100', fillColor:'transparent'}" class="sparkline inline">loading...</div>
-                            </td>
-                            <td>Visitors</td>
-                            <td class="text-warning">
-                                <i class="fa fa-level-down"></i> 8%
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -572,32 +491,4 @@
         float: left;
     }
 </style>
-@endsection
-
-@section('script')
-<script>
-    $.get('/admin/tongji')
-    .then( (res) => {
-        let options = JSON.parse( res)['items']
-        let pv = [],
-            uv = [],
-            ip = []
-        for( let i = 0; i < options[0].length; i++) {
-            let date = options[0][ i ][0]   // 时间
-            let d = date.split('/')
-            let m = d[2]
-            let pv_count = options[1][ i ][0]   // pv
-            let visitor_count = options[1][i][1]    // 访客
-            let ip_count = options[1][i][2]     // ip
-            pv.push([m, pv_count])
-            uv.push([m, visitor_count])
-            ip.push([m, ip_count])
-        }
-        let baidu = "[{data:" + JSON.stringify( pv ) + ",points:{show:true,radius:0},splines:{show:true,tension:0.45,lineWidth:2,fill:1}}," +
-            "{data:" + JSON.stringify( uv ) + ",points:{show:true,radius:0},splines:{show:true,tension:0.45,lineWidth:2,fill:1}}," +
-            "{data:"+ JSON.stringify( ip ) + ",points:{show:true,radius:0},splines:{show:true,tension:0.45,lineWidth:2,fill:1}}],{colors:['#a88add','#0cc2aa','#fcc100'],series:{shadowSize:3},xaxis:{show:true,font:{color:'#ccc'},position:'bottom'},yaxis:{show:true,font:{color:'#ccc'}},grid:{hoverable:true,clickable:true,borderWidth:0,color:'rgba(120,120,120,0.5)'},tooltip:true,tooltipOpts:{content:'%x.0 is %y.4',defaultTheme:false,shifts:{x:0,y:-40}}}"
-
-        $('.baidutongji').attr('ui-options', baidu )
-    });
-</script>
 @endsection

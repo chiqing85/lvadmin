@@ -47,4 +47,15 @@ class LinkLogic extends Model
         Cache::forget('link');
         return redirect('/admin/links');
     }
+
+    static function getlist()
+    {
+        return Cache::rememberForever('link',  function () {
+            return  Link::where('status', 1)
+                ->orderBy('sorts', 'asc')
+                ->orderBy('id', 'asc')
+                ->link()
+                ->limit( 10 );
+        });
+    }
 }

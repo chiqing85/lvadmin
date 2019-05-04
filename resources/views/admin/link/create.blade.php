@@ -31,6 +31,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Logo</label>
+                                    <div class="form-item-content">
+                                        <div class="ivu-upload" style="display: inline-block; width: 58px; border-radius: 100%;">
+                                            <div class="ivu-upload ivu-upload-drag">
+                                                <input type="hidden" class="form-control file_img" name="logo">
+                                                <input type="file" class="file-invisible file-upload article" accept="image/jpg,image/jpeg,image/png">
+                                                <div style="width: 58px; height: 58px; line-height: 58px;">
+                                                    <img src="" class="upload_img" style="display: none">
+                                                    <i class="material-icons" style="line-height: 58px;">&#xe412;</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label>排序</label>
                                     <div class="form-item-content">
                                         <input type="text" class="form-control" value="100" name="sorts">

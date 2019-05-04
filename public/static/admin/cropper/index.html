@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/cropper.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<div class="modal_content">
+		<form onsubmit="return false">
+			<div class="avatar-body row">
+				<div class="col-md">
+					<div class="container">
+					  <img>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<p>头像预览：</p>
+					<div class="img-preview preview-lg"></div>
+					<span>大小150*150</span>
+				</div>				
+			</div>
+
+			<footer>
+				<label class="btn btn-default">
+					选择图片
+					<input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+				</label>
+				
+				<button type="button" class="btn btn-primary">保存</button>
+			</footer>
+		</form>
+	</div>
+	
+</body>
+</html>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="dist/cropper.js"></script>
+<script>
+
+	var $inputImage = $('#avatarInput');
+	var $image = $('.container > img');
+	var $sub = $('.btn-primary'); 
+	var opt = {
+				
+	  	aspectRatio: 1,
+	  	preview: '.img-preview',
+	  
+		crop: function(data) {
+		  		// console.log(data);
+		    // 出来裁切后的图片数据.
+		},
+		built:function() {
+
+			}
+	};
+	$src = $('.upload_img', parent.document).attr('src')
+		? $('.upload_img', parent.document).attr('src')
+		: 'assets/img/1556201803059.jpg';
+
+	$('.container>img').attr('src', $src );
+	
+	//上传
+	$inputImage.on('change', function() {
+
+		var files = this.files;
+		var file;
+
+		if(files && files.length) {
+			file = files[0];
+		}
+
+		uploadedImageURL = URL.createObjectURL(file);
+
+		$image.cropper('destroy').attr('src', uploadedImageURL).cropper(opt);
+
+		$inputImage.val('');
+
+	});
+
+
+	//初始化
+	$image.cropper(opt);
+
+	//提交
+	$sub.on('click', function(e) {
+
+		var Canvas = $image.cropper('getCroppedCanvas');
+
+		Canvas.toBlob(function(blob) {
+
+			var Formdata = new FormData();
+
+			var nameImg = new Date().getTime() + '.jpg';
+
+			Formdata.append('images',blob, nameImg);
+			Formdata.append('size', 150);
+
+			$.ajax({
+		        url: '/admin/upload/thumb',
+		        type: 'POST',
+		        headers: {
+	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]', parent.document).attr('content')
+	            },
+		        data: Formdata,
+		        // 告诉jQuery不要去处理发送的数据
+		        processData : false,
+		        // 告诉jQuery不要去设置Content-Type请求头
+		        contentType : false,
+
+		        success: function (data) {
+		            $('input.file_img', parent.document).val(data);
+		            $('.upload_img', parent.document).attr('src', data).show();
+		            var index = parent.layer.getFrameIndex(window.name);  
+					parent.layer.close(index);
+
+                }
+		    });
+        });
+    });
+</script>

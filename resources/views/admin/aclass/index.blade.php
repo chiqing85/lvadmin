@@ -7,7 +7,10 @@
                 <h3>文章分类</h3>
             </div>
             <div class="add">
-                <a data-pjax href="/admin/aclass/create" class="btn btn-fw white">添加分类</a>
+                <a data-pjax href="{{ url('/admin/aclass/create') }}" class="btn btn-icon btn-social white btn-social-colored light-blue">
+                    <i class="material-icons">&#xe145;</i>
+                    <i class="create_i">添加</i>
+                </a>
             </div>
             <div>
                 <table class="table table-bordered m-0">
@@ -72,9 +75,9 @@
                                         </label>
                                     </td>
                                     <td data-value="1">
-                                        <a data-pjax href="{{ url("admin/aclass/create/$v->id") }}" class="btn btn-xs success"><i class="fa fa-pencil"></i> 添加子类 </a>
-                                        <a data-pjax href="{{ url("admin/aclass/update/$v->id") }}" class="btn btn-xs info"><i class="fa fa-pencil"></i> 编辑 </a>
-                                        <a data-pjax href="{{ url("admin/aclass/delete/$v->id") }}" class="btn btn-danger btn-xs action-delete"><i class="fa fa-trash-o"></i> 删除 </a>
+                                        <a data-pjax href="{{ url("admin/aclass/create/$v->id") }}" class="btn btn-icon btn-social white btn-sm success"><i class="fa fa-plus-circle"></i><i class="create_i"> 子类 </i></a>
+                                        <a data-pjax href="{{ url("admin/aclass/update/$v->id") }}" class="btn btn-icon btn-social white btn-sm info"><i class="fa fa-pencil"></i><i class="create_i"> 编辑 </i></a>
+                                        <a data-pjax href="{{ url("admin/aclass/delete/$v->id") }}" class="btn btn-danger btn-icon btn-social btn-sm action-delete"><i class="fa fa-trash-o"></i><i class="create_i"> 删除 </i></a>
                                     </td>
                                 </tr>
                                 @endforeach

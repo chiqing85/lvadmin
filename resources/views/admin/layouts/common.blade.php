@@ -39,7 +39,6 @@
         </div>
     </div>
 </div>
-<!-- build:js /static/admin/scripts/app.html.js -->
 <!-- jQuery -->
 <script src="/static/admin/jquery/jquery/dist/jquery.js"></script>
 <!-- Bootstrap -->
@@ -67,7 +66,8 @@
 <!-- ajax -->
 <script src="/static/admin/jquery/jquery-pjax/jquery.pjax.js"></script>
 <script src="/static/admin/scripts/ajax.js"></script>
-<!-- endbuild -->
+<!-- editor -->
+<script src="/static/editor/editormd.js"></script>
 <script>
     $(document).on('click', '.aclass-open', function () {
         var oid = $(this).attr('oid');
@@ -86,11 +86,30 @@
         }
     });
 
-    $(document).on('change', 'input.upload', ()=> {
+    $(document).on('click', '.file-users', function () {
+        // if( $("input.file-upload").is('.users') ) url = '/admin/upload/thumb';
+        layer.open({
+            type: 2,
+            title: '<i class="fa fa-crop"></i> 用户头像',
+            area: ['870px', '600px'],
+            fixed: true, //涓嶅浐瀹�
+            content: '/static/admin/cropper/index.html'
+        });
+        return false;
+
+    })
+
+    $(document).on('change', "input.file-upload", ()=> {
         var formData = new FormData();
-        formData.append('images', $("input.upload")[0].files[0]);
+        formData.append('images', $("input.file-upload")[0].files[0]);
+        let url = '';
+        if( $("input.file-upload").is('.config') ) url = '/admin/upload/image';
+        if( $("input.file-upload").is('.article') ) {
+            url = '/admin/upload/thumb';
+            formData.append('size', 750);
+        }
         $.ajax({
-            url: '/admin/upload/image',
+            url,
             type: 'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -105,6 +124,102 @@
                 $('.upload_img').show().attr('src', v);
             }
         });
+    })
+
+    function keys( e ) {
+        let k = $('input.keywords');
+        let kt = $('input.keywords-tag');
+        if( e.keyCode == 13 ) {
+            e.preventDefault();
+            let t = '<span class="tag accent"><span>' + k.val() + '&nbsp;&nbsp;</span><a href="javascript:;" title="Removing tag">x</a></span>';
+            if( $('span.tag.accent').length < 3) {
+                let ktv = kt.val() + k.val() + ',';
+                kt.val( ktv );
+            } else {
+                if($('ul.parsley-errors-list').length < 1) {
+                    k.addClass('parsley-error');
+                    let it = '<ul class="parsley-errors-list filled" id="parsley-id-4"><li class="parsley-required">关键词最多添加 3 条…</li></ul>';
+                    k.parent('.form-item-content').append( it );
+                }
+                t = '';
+            }
+            $('.keywords').val('');
+            $('.form-item-content.tag').append( t );
+        } else {
+            if( k.is('.parsley-error') ) {
+                k.removeClass('parsley-error');
+                k.parent('.form-item-content').find('.parsley-errors-list.filled').remove();
+            }
+        }
+    }
+
+    $(document).on('click', 'span.tag.accent>a', function() {
+        let t = $(this).siblings('span');
+        let k = $('input.keywords-tag');
+        let str = k.val().replace($.trim( t.text() ) + ',', "");
+        k.val( str );
+       $(this).parent('span.tag.accent').remove();
+       let ik = $('input.keywords');
+       if(  ik.is('.parsley-error')) {
+           ik.removeClass('parsley-error');
+           ik.parent('.form-item-content').find('.parsley-errors-list.filled').remove();
+       }
+    })
+
+    $(document).on('click', '.edit', function () {
+        let data = eval( "("+ $(this).attr('data-value') +")" );
+        let url = $(this).attr('data-url');
+        pj( data, url)
+    })
+    $(document).on('change', '.change',function () {
+        let data = eval( "("+ $(this).attr('data-value') +")" );
+        let url = $(this).attr('data-url');
+        pj(data, url);
+    })
+
+    // 局部刷新
+    function pj( data, url ) {
+        $.ajax({
+            url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data,
+            success: function ( req ) {
+                if(req.code == 403 ){
+                    layer.msg( req.msg, { icon: 2, time: 1000 })
+                    return false;
+                }
+                req = JSON.parse( req );
+                if( req.code == 1 ) {
+                    layer.msg( req.message,{ icon: 1, time: 1500}, (index) => {
+                        layer.close(index);
+                        $('#view').load(req.url+ ' #view' )
+                    } );
+                }else if(req.code == 403 ){
+                    layer.msg( req.msg, { icon: 2, time: 1000 })
+                } else {
+                    layer.msg( req.message, { icon: 2, time: 1000 })
+                }
+            }
+        });
+    }
+    
+    //
+    $(document).on('click', '#ACheck', function () {
+        var flage = $(this).is(':checked');
+        $('.checkbox_all').each(function () {
+            $(this).prop('checked', flage);
+        })
+    })
+    $(document).on('click', '.deletec', function () {
+        let all = $('input.checkbox_all');
+        let data = Array();
+        all.each( function() {
+            if($(this).is(':checked'))  data.push( $(this).val());
+        });
+        pj({ id : data }, $(this).attr('data-url'))
     })
 </script>
 </body>

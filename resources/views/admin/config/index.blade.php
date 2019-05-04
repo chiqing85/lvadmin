@@ -22,7 +22,7 @@
                                                     <div class="ivu-upload" style="display: inline-block; width: 58px;">
                                                         <div class="ivu-upload ivu-upload-drag">
                                                             <input type="hidden" class="form-control file_img" name="{{ $v->k }}" placeholder="{{ $v->v }}">
-                                                            <input type="file" class="file-invisible file-config upload" accept="image/jpg,image/jpeg,image/png">
+                                                            <input type="file" class="file-invisible file-upload config " accept="image/jpg,image/jpeg,image/png">
                                                             <div style="width: 58px; height: 58px; line-height: 58px;">
                                                                 @if( $v->v )
                                                                     <img src="{{ $v->v }}" class="upload_img">

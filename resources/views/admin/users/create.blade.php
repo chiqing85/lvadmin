@@ -33,10 +33,10 @@
                                 <div class="form-group">
                                     <label>用户头像</label>
                                     <div class="form-item-content">
-                                        <div class="ivu-upload" style="display: inline-block; width: 58px;">
-                                            <div class="ivu-upload ivu-upload-drag">
+                                        <div class="ivu-upload" style="display: inline-block; width: 58px; border-radius: 100%;">
+                                            <div class="ivu-upload ivu-upload-drag users">
                                                 <input type="hidden" class="form-control file_img" name="pic">
-                                                <input type="file" class="file-invisible file-config upload" accept="image/jpg,image/jpeg,image/png">
+                                                <input type="file" class="file-invisible file-users" accept="image/jpg,image/jpeg,image/png">
                                                 <div style="width: 58px; height: 58px; line-height: 58px;">
                                                     <img src="" class="upload_img" style="display: none">
                                                     <i class="material-icons" style="line-height: 58px;">&#xe412;</i>

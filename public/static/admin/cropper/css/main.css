@@ -1,0 +1,77 @@
+header {
+    background-color: #666;
+    height: 48px;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    z-index: 1;
+}
+header span.title {
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 18px;
+    line-height: 48px;
+}
+.modal_content {
+    width: 80%;
+    margin: 0 auto;
+}
+.avatar-body.row {
+    margin: 50px auto;
+}
+.col-md {
+	float: left;
+}
+.col-md-3 {
+    float: left;
+    margin-top: 15px;
+}
+.col-md-3>p {
+    font-weight: bold;
+}
+.col-md-3 >span {
+    line-height: 3rem;
+    color: #aaa;
+}
+.container {
+    height: 365px;
+    width: 500px;
+    margin-top: 15px;
+    background-color: #fcfcfc;
+    overflow: hidden;
+}
+.container img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+.img-container, .img-preview {
+    background-color: #f7f7f7;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+}
+.preview-lg {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}
+footer {
+    display: flex;
+    height: 48px;
+    width: 200px;
+    margin: 20px auto;
+}
+label.btn.btn-default{
+    line-height: 38px;
+}
+.btn {
+    width: 100px;
+    margin: 0 10px;
+    border-radius: 0;
+}
+input#avatarInput {
+    display: none;
+}

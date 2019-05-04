@@ -39,7 +39,6 @@
                         @else
                             <tr class="footable-odd">
                                 @endif
-
                                 <td>
                                     @if( $v->level == 1) 　　├ {{ $v->title }}
                                     @elseif($v->level == 2)　　│　　├ {{ $v->title }}

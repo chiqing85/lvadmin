@@ -2911,7 +2911,7 @@ div.input-group > .select2-container > .selection {
 
 .dark {
   color: rgba(255, 255, 255, 0.87);
-  background-color: #2e3e4e; }
+  background-color: #18223b; }
   .dark .lt {
     background-color: #334456; }
   .dark .dk {
@@ -5693,13 +5693,12 @@ textarea.md-input {
   animation: fadeOutDown 0.5s; }
 
 .error {
-  position: absolute;
+  position: fixed;
   right: 5px;
   top: 65px; }
 
 .form-item-content {
-  margin-left: 100px;
-  line-height: 32px; }
+  margin-left: 100px;}
 
 .login label {
   width: unset; }
@@ -5719,7 +5718,7 @@ textarea.md-input {
 .form-control {
   font-size: 13px;
 }
-input.file-invisible.file-config {
+input.file-invisible.file-upload , .file-users{
   position: absolute;
   top: 0px;
   left: 0px;
@@ -5742,6 +5741,9 @@ input.file-invisible.file-config {
   overflow: hidden;
   -webkit-transition: border-color .2s ease;
   transition: border-color .2s ease;
+}
+.ivu-upload.ivu-upload-drag.users {
+  border-radius: 100%;
 }
 .ivu-upload-drag:hover {
   border: 1px dashed #09c;
@@ -5782,6 +5784,7 @@ span.form-check .md-check.left_2 {
 }
 span.form-check .md-check {
   padding: 0.5rem;
+  font-size: 14px;
 }
 span.form-check .md-check > i {
   margin-left: 0;
@@ -5792,4 +5795,31 @@ i.create_i {
 }
 .form-check.users>.md-check {
     padding: unset;
+}
+span.form-check.users {
+  line-height: 3;
+}
+span.users .md-check > i {
+  margin: 9px 25px 0 0;
+}
+label.md-check.active {
+  width: unset;
+}
+span.tag {
+  line-height: 1;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  display: block;
+  float: left;
+  height: auto;
+  padding: 5px 9px;
+  text-decoration: none;
+  color: #F1F6F7;
+  margin-right: 5px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-family: helvetica;
+}
+a.btn-social {
+    margin-bottom: 5px;
 }

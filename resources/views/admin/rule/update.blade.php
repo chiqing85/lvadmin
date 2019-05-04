@@ -76,7 +76,7 @@
                                 <div class="form-group">
                                     <label>排序</label>
                                     <div class="form-item-content">
-                                        <input type="text" class="form-control" value="100" name="sorts" value="{{ $authRule->sorts }}">
+                                        <input type="text" class="form-control" name="sorts" value="{{ $authRule->sorts }}">
                                     </div>
                                 </div>
                                 <div class="form-group">

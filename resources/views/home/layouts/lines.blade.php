@@ -1,4 +1,3 @@
-<!-- 				Lines Grid			-->
 <div class="lines-grid">
     <div class="row">
         <div class="col col-m-12 col-t-6 col-d-4 col-d-lg-3"></div>

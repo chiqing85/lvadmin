@@ -94,7 +94,6 @@
                             </li>
                         </ul>
                     </li>
-
                     <li>
                         <a>
                             <span class="nav-caret">
@@ -117,13 +116,39 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/common" >
-                                    <span class="nav-text">文章评论</span>
+                                <a href="/admin/aclass" >
+                                    <span class="nav-text">文章分类</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/aclass" >
-                                    <span class="nav-text">文章分类</span>
+                                <a href="/admin/tags" >
+                                    <span class="nav-text">标签管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="nav-caret">
+                              <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-label">
+                              <b class="label rounded label-sm primary">5</b>
+                            </span>
+                            <span class="nav-icon">
+                              <i class="material-icons">&#xe0b7;</i>
+                            </span>
+                            <span class="nav-text">留言管理</span>
+                        </a>
+                        <ul class="nav-sub nav-mega nav-mega-3">
+                            <li>
+                                <a href="/admin/comments" >
+                                    <span class="nav-text">留言列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/blacklist" >
+                                    <span class="nav-text">黑名单</span>
                                 </a>
                             </li>
                         </ul>
@@ -156,29 +181,37 @@
                                     <span class="nav-text">Form Validation</span>
                                 </a>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="nav-caret">
+                              <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                              <i class="material-icons">&#xe869;</i>
+                            </span>
+                            <span class="nav-text">配置管理</span>
+                        </a>
+                        <ul class="nav-sub nav-mega nav-mega-3">
                             <li>
-                                <a href="form.select.html" >
-                                    <span class="nav-text">Select</span>
+                                <a href="/admin/comments" >
+                                    <span class="nav-text">上传配置</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="form.editor.html" >
-                                    <span class="nav-text">Editor</span>
+                                <a href="/admin/comments" >
+                                    <span class="nav-text">短信配置</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="form.picker.html">
-                                    <span class="nav-text">Picker</span>
+                                <a href="/admin/comments" >
+                                    <span class="nav-text">邮箱配置</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="form.wizard.html">
-                                    <span class="nav-text">Wizard</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form.dropzone.html" class="no-ajax" >
-                                    <span class="nav-text">File Upload</span>
+                                <a href="/admin/blacklist" >
+                                    <span class="nav-text">统计配置</span>
                                 </a>
                             </li>
                         </ul>
