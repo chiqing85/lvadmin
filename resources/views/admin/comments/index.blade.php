@@ -1,3 +1,6 @@
+<?php
+use \App\Http\Controllers\admin\CommentsController as Com;
+?>
 @extends('admin.layouts.common')
 @section('content')
     <div class="padding">
@@ -82,9 +85,7 @@
                                         warn"> 未审
                                     @elseif($v->status == -2 )
                                         ">待审核
-                                    @elseif($v->status == -3 )
-                                        ">
-                                    @else
+                                    @elseif($v->status ==1 )
                                         success"> 通过
                                     @endif
                                     </span>
@@ -92,7 +93,7 @@
                                 <td> {{ $v->ip }}</td>
                                 <td>{{ $v->created_at }}</td>
                                 <td data-value="1">
-                                    <a data-pjax href="{{ url("admin/comments/update/$v->id") }}" class="btn btn-icon btn-social white btn-sm success"><i class="fa fa-eye"></i><i class="create_i"> 预览 </i></a>
+                                    <a href="{{ url("/article/$v->articleid")}}{{Com::page( $v ) > 1 ? '?page='.Com::page( $v ) : ''}}#{{ $v->parentid ? $v->parentid : $v->id}}" target="_blank" class="btn btn-icon btn-social white btn-sm success"><i class="fa fa-eye"></i><i class="create_i"> 预览 </i></a>
                                     <a data-pjax href="javascript:;" data-url="{{ url("admin/comments/review/$v->id") }}" class="btn btn-icon btn-social white btn-sm accent edit"><i class="fa fa-dot-circle-o"></i><i class="create_i">  审核 </i></a>
                                     <a data-pjax href="{{ url("admin/comments/delete/$v->id") }}" class="btn btn-danger btn-icon btn-social btn-sm action-delete"><i class="fa fa-trash-o"></i><i class="create_i"> 删除 </i></a>
                                     <a data-pjax href="javascript:;" data-url="{{ url("admin/comments/black/$v->id") }}" class="btn btn-icon btn-social white btn-sm dark edit"><i class="fa fa-microphone-slash"></i><i class="create_i">  拉黑 </i></a>

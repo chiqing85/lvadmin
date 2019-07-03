@@ -1,9 +1,25 @@
+<?php
+use \App\Http\Controllers\home\ArticleController as Article;
+?>
 @extends('home.layouts.base')
 @section('contents')
 <div class="card-inner active" id="about-card">
     <div class="row card-container">
         <link rel="stylesheet" href="/static/editor/css/editormd.min.css">
-        <div class="card-wrap col col-m-12 col-t-12 col-d-8 col-d-lg-12" data-simplebar="init">
+        <style>
+            .lzl .resume-item.zl_0 {
+                padding-top: 15px !important;
+            }
+            .lzl .pic {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+            }
+            .lzl .resume-item p, .lzl .name {
+                font-size: 14px !important;
+            }
+        </style>
+        <div class="card-wrap col col-m-12 col-t-12 col-d-12 col-d-lg-12" data-simplebar="init">
             <div class="content services post">
                 <div class="row">
                     <div class="col col-m-12 col-t-12 col-d-12 col-d-lg-12">
@@ -41,7 +57,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col col-m-12 col-t-12 col-d-12 col-d-lg-12">
                         <div class="resume-items card-box comments">
                             <div class="resume-item">
@@ -50,44 +65,50 @@
                                 </div>
                             </div>
                             <!-- resume item -->
-                            @if( empty( $comment ) )
+                            @if(  $comment->isEmpty() )
                                 <div class="comment_null">没有评论，快来抢沙发吧…</div>
                             @else
-                                @foreach($comment as $v)
-                                    <div class="resume-item @if($v->level )zl_0 @endif ">
-                                        <div class="pic @if(empty( $v->name ))null @endif">
-                                            @if($v->item_pic )
-                                                <img src="{{ $v->item_pic  }}" alt="">
-                                            @else
-                                                <span class="w-40 r-2x _600 text-lg purple">
+                                <div class="comment_item">
+                                    @foreach($comment as $v)
+                                        <div class="resume-item parent" data-parent="{{ $v->id }}" id="{{ $v->id }}">
+                                            <div class="pic @if(empty( $v->name ))null @endif">
+                                                @if($v->item_pic )
+                                                    <img src="{{ $v->item_pic  }}" alt="">
+                                                @else
+                                                    <span class="w-40 r-2x _600 text-lg purple">
                                                 {{ $v->item }}
                                             </span>
-                                            @endif
-                                        </div>
-                                        <div class="coment">
-                                            <div class="name">
-                                                @if( !empty($v->url))
-                                                    <a href="{{ $v->url }}" target="_blank">
-                                                        {{ empty( $v->name ) ? "null" : $v->name }}
-                                                    </a>
-                                                @else
-                                                    {{ empty( $v->name ) ? "null" : $v->name }}
                                                 @endif
                                             </div>
-                                            <div class="date">{{ $v->created_at }}</div>
-                                            <p>{{ $v->contents }}</p>
-                                        </div>
-                                        <div class="comment_right">
+                                            <div class="coment">
+                                                <div class="name">
+                                                    @if( !empty($v->url))
+                                                        <a href="{{ $v->url }}" target="_blank">
+                                                            {{ empty( $v->name ) ? "匿名用户" : $v->name }}
+                                                        </a>
+                                                    @else
+                                                        {{ empty( $v->name ) ? "匿名用户" : $v->name }}
+                                                    @endif
+                                                </div>
+                                                <div class="date">{{ $v->created_at }}</div>
+                                                <p>{{ $v->contents }}</p>
+                                            </div>
                                             <div class="pull-right commentshare" data-id="{{ $v->id }}"><span class="icon la la-share"></span>  回复 </div>
+                                            {!! Article::lzl( $v->id ) !!}
                                         </div>
+                                    @endforeach
+                                    @if( $comment->lastPage() > 1)
+                                    <div class="comment">
+                                        {{ $comment->links() }}
                                     </div>
-                            @endforeach
+                                    @endif
+                                </div>
                             @endif
                             <!-- resume item -->
                             <div class="resume-item">
                                 <form id="cform" novalidate="novalidate" data-action="{{url('/comments/article')}}">
                                     <div class="row">
-                                        <div class="col col-m-12 col-t-6 col-d-6 col-d-lg-4">
+                                        <div class="col col-m-12 col-t-12 col-d-12 col-d-lg-4">
                                             <div class="group-val">
                                                 <input type="text" name="name" placeholder="昵称（*）">
                                             </div>

@@ -108,7 +108,7 @@ sup {
 .label.up {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 0;
   min-width: 4px;
   min-height: 4px;
   display: inline-block; }
@@ -843,7 +843,8 @@ a.list-group-item {
   background: inherit;
   min-height: 3.5rem; }
   .navbar .up {
-    margin: 0 -0.6em; }
+    margin: 0 -0.6em;
+    border-radius: 50%;}
   .navbar .avatar {
     top: -2px; }
 
@@ -1410,11 +1411,12 @@ a.list-group-item {
     opacity: 0.6; }
 
 .box-body {
-  padding: 3rem 3rem 1rem 1rem; }
+  /*padding: 3rem 3rem 1rem 1rem;*/
+  padding: .5rem 3rem 0.5rem 1rem;}
 
 .box-footer {
   padding: 1rem; }
-
+.null { color: #000; background: #d8d5d5; }
 .box-divider {
   border-bottom: 1px solid rgba(120, 130, 140, 0.13);
   margin: 0 16px;
@@ -3505,7 +3507,7 @@ div.input-group > .select2-container > .selection {
   margin-right: 1rem !important; }
 
 .m-b {
-  margin-bottom: 1rem !important; }
+  margin-bottom: .35rem !important; }
 
 .m-l {
   margin-left: 1rem !important; }

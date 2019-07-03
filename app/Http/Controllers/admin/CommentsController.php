@@ -6,6 +6,8 @@ use App\Comment;
 use App\logic\CommentLogic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+use phpDocumentor\Reflection\Types\Self_;
 use function PHPSTORM_META\elementType;
 
 class CommentsController extends Controller
@@ -101,5 +103,83 @@ class CommentsController extends Controller
     public function empty()
     {
         return CommentLogic::empty();
+    }
+
+    /**
+     * @title 反馈列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contacts()
+    {
+        $contacts = CommentLogic::gcontacts();
+        return view('admin.comments.contacts', compact('contacts'));
+    }
+
+    /**
+     * @title 查看反馈内容
+     * @param Comment $contacts
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function info( Comment $contacts)
+    {
+        if( $contacts->parentid != 0)
+        {
+            $contacts = Comment::where('id', $contacts->parentid)
+                ->first();
+        }
+        $Feedback = Comment::where('parentid', $contacts->id )
+           ->orderBy('id', 'asc')
+           ->get();
+        return view('admin.comments.info',compact( 'contacts', 'Feedback' ));
+    }
+
+    /**
+     * @titel 删除反馈
+     * @param Comment $contacts
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
+     */
+    public function cdelete( Comment $contacts )
+    {
+        $contacts->delete();
+
+        Cache::forget('gcontacts');
+        Cache::forget('CNew');
+        return redirect('/admin/contacts');
+    }
+
+    /**
+     * @title 回复反馈
+     * @return mixed
+     */
+    public function reply()
+    {
+        $this->validate(\request(), [
+            'contents' => 'required'
+        ],[
+            'contents.required' => '回复内容不能为空…'
+        ]);
+        return CommentLogic::reply();
+    }
+
+    /**
+     * @title 查找信息所在分页页码
+     * @param $comments
+     * @return float|int
+     */
+    static function page( $comments ) {
+        if( $comments->parentid ){
+            $comments = Comment::where('id', $comments->parentid )->first();
+        }
+        $count = Comment::where('articleid', $comments->articleid )
+            ->where('pid', 0)
+            ->where('id', '>', $comments->id )
+            ->count();
+        $page = config('page.article_page');
+        $pn = $count / $page;
+        if( $pn >= 1) {
+            $pn = ceil( $pn ) + 1 ;
+        }
+        return $pn;
     }
 }

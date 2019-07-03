@@ -13,27 +13,35 @@
 
 Route::get('/', 'home\IndexController@index');
 Route::get('/article', 'home\ArticleController@index');
+Route::get('/archives', 'home\ArticleController@archives');
+Route::get('/about', 'home\ArticleController@about');
+Route::get('/contacts', 'home\ContactsController@index');
+Route::get('/article/lzl/{id}', 'home\ArticleController@lzl');
 Route::get('/link', 'home\LinkController@index');
 Route::get('/article/{article}', 'home\ArticleController@show');
 Route::group(['prefix' => 'comments'], function() {
     Route::post('/article', 'home\CommentsController@article');
+    Route::post('/contacts', 'home\ContactsController@contacts');
 });
 Route::get('/categories/{str}', 'home\CategoriesController@list');
-
 
 /**
  * @title 后台路由
  */
 Route::get('/login', 'admin\LoginController@index')->name('login');
 Route::post('/login', 'admin\LoginController@login');
-
 Route::group(
     [ 'prefix' => 'admin',
                'middleware' => ['auth:web', 'check']
              ], function () {
     // 首页
     Route::get('/', 'admin\IndexController@index');
-    Route::get('/tongji', 'admin\IndexController@tongji');
+    // 个人资料
+    Route::get('/account/infop/', 'admin\AccountController@infop');
+    Route::post('/account/update', 'admin\AccountController@update');
+    Route::get('/account/pwd', 'admin\AccountController@pwd');
+    Route::post('/account/uppwd', 'admin\AccountController@uppwd');
+
     // 系统配置
     Route::get('/config', 'admin\ConfigController@index');
     Route::get('/config/update', 'admin\ConfigController@update');
@@ -95,14 +103,30 @@ Route::group(
     Route::get('/comments/rledel/{comment}', 'admin\CommentsController@rledel');
     Route::post('/comments/rledel', 'admin\CommentsController@rledelall');
     Route::get('/comments/empty', 'admin\CommentsController@empty');
+    // 反馈中心
+    Route::get('/contacts', 'admin\CommentsController@contacts');
+    Route::get('/contacts/info/{contacts}', 'admin\CommentsController@info');
+    Route::post('/contacts/reply', 'admin\CommentsController@reply');
+    Route::get('/contacts/delete/{contacts}', 'admin\CommentsController@cdelete');
 
     // 黑名单
     Route::get('/blacklist', 'admin\BlacklistController@index');
     Route::get('/blacklist/delete/{black}','admin\BlacklistController@delete');
+
+    // 配置管理
+    Route::get('/email', 'admin\SettingController@email');
+    Route::get('/tongji', 'admin\SettingController@tongji');
 
 
     // 上传文件
     Route::post('/upload/image', 'admin\UploadController@image');
     Route::post('/upload/thumb', 'admin\UploadController@thumb');
     Route::post('/upload/editor', 'admin\UploadController@editor');
+
+    // 退出登录
+    Route::get('/logout', 'admin\LoginController@logout');
+
+    // 最新通知
+    Route::get('/notices/noticesall', 'admin\NoticesController@noticesall');
+    Route::any('/pusher_auth', 'admin\NoticesController@pusher');
 });

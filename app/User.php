@@ -72,7 +72,7 @@ class User extends Authenticatable
      * @return int
      */
     public function deleteRort( $group ) {
-        return $this->group()-> detach( $group );
+        return $this->group()->detach( $group );
     }
 
     /**
@@ -81,5 +81,9 @@ class User extends Authenticatable
      */
     public function isAssecc ( $RequestUri ) {
 
+    }
+
+    public function notices() {
+        return $this->hasMany( '\App\Notice', 'user_id', 'id');
     }
 }

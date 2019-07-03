@@ -54,3 +54,16 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+import Echo from 'laravel-echo'
+
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    cluster: window.location.hostname + ':6379'
+});
+
+Echo.channel('NewComment').listen('NewComments', e => {
+    console.log( e )
+})

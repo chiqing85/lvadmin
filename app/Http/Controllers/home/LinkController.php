@@ -13,7 +13,6 @@ class LinkController extends Controller
     public function index()
     {
         $link = LinkLogic::getlist();
-
         return view('home.link.index', compact('link'));
     }
 }

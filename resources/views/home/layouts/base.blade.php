@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{{ $title }}</title>
+    <title>{{ $cofig['title'] }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="vCard & Resume Template" />
     <meta name="keywords" content="vcard, resposnive, resume, personal, card, cv, cards, portfolio" />
     <meta name="author" content="beshleyua" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--		Load CSS	-->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/home/css/basic.css" />
     <link rel="stylesheet" href="/static/home/css/layout.css" />
     <link rel="stylesheet" href="/static/home/css/blogs.css" />
@@ -38,7 +39,7 @@
         </div>
     </div>
 </div>
-<div class="card-inner" id="card">
+<div class="card-inner active" id="card">
     @yield('contents')
 </div>
 @include('home.layouts.lines')
@@ -59,7 +60,7 @@
 <script src="/static/editor/lib/sequence-diagram.min.js"></script>
 <script src="/static/editor/lib/flowchart.min.js"></script>
 <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
-
+<script src="/static/layer/layer.js"></script>
 <script src="/static/home/js/scripts.js"></script>
 </body>
 </html>

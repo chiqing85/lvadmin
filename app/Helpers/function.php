@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @title 无限分类
+ * @param $data
+ * @param int $pid
+ * @param int $h_layer
+ * @param int $level
+ * @return array
+ */
 function create($data, $pid = 0, $h_layer = 0, $level = 0) {
     $arr = array();
     foreach ($data as $k => $v) {
@@ -29,7 +37,7 @@ function acmid() {
 function Getiplookup( $ip ) {
     if( $ip == '127.0.0.1') return '本地测试';
     $api = 'http://ip.taobao.com/service/getIpInfo.php?ip='. $ip;
-    $json = @file_get_contents($api);//调用新浪IP地址库
+    $json = @file_get_contents($api);//调用淘宝IP地址库
     $arr = json_decode($json,true);
     $arr = $arr['data'];
     $country = $arr['country']; //国家
@@ -62,7 +70,7 @@ function time_lin($time){
         else
             $str = $d.'天以前';
     }else{
-        $str = $rtime;
+        $str = $rtime->format('m-d H:i');
     }
     return $str;
 }
@@ -71,6 +79,10 @@ function trimall( $str ) {
     $qian=array(" ","　","\t","\n","\r");
     return str_replace($qian, '', $str);
     return preg_replace('/($s*$)|(^s*^)/m', '',$str);
+}
+
+function sub($str) {
+    return substr($str,0,strlen($str)-1);
 }
 
 /**
@@ -110,7 +122,7 @@ function GetFirst( $str ) {
         if($val>=-11847 and $val<=-11056)return "Y";
         if($val>=-11055 and $val<=-10247)return "Z";
     } else {
-        return null;
+        return $str;
     }
 }
 

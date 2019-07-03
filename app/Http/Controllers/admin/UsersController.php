@@ -37,15 +37,35 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * @title 编辑用户
+     * @param User $Users
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function update(User $Users) {
         if(request()->isMethod('get')) {
+            // 用户所属角色
+            $group = [];
+            foreach ( \Auth::user()->group as $role)
+            {
+                array_push($group, $role->id );
+            }
+
+            if( ! in_array('1', $group ) ) {  // 超级管理员直接跳过验证
+                if($Users->id != \Auth::user()->id ) {
+                    $type = '编辑';
+                    $data = [
+                        'code' => 403,
+                        'msg' => "很抱歉，你没有".$type . "该用户的权限"
+                    ];
+                    return response()->json($data );
+                }
+            }
             $group = GroupLogic::get();
             $Users->load('group');
            return view('admin.users.update', compact(['Users', 'group']));
         } else {
-            $this->validate( request( ), [
-                'username' => 'required|min:2|max:20'
-            ]);
             return UsersLogic::up( $Users );
         }
 

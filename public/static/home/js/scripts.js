@@ -38,9 +38,11 @@ $(function() {
                 setTimeout(function() {
                     j.addClass("loaded");
                     $(h).removeClass("active");
-                    $(g).addClass("active")
-                    if( u ) card( u );
-                    $('.lines-grid .row .col .lines').width( 0 );
+                    $(g).addClass("active");
+                    if( u )  {
+                        card( '/' + u );
+                    }
+
                 }, 1000)
             }
             return false
@@ -61,15 +63,13 @@ $(function() {
                 j.addClass("loaded");
                 $(h).removeClass("active");
                 if( u ) {
-                    $('#card').load(u + ' .card-container',function () {
+                    $('#card').load( u + ' .card-container',function () {
                         view();
                     }).addClass('active');
                 };
             }, 1000)
         }
-
         return false
-
     })
     if ($("#video-bg").length) {
         var c = $("#video-bg").YTPlayer()
@@ -267,8 +267,12 @@ $(function() {
         }
         return false
     }
+    view();
     function  card ( url ) {
         $('#card').load(url + ' .card-container').addClass('active');
+        if( url == '/archives') {
+            archives();
+        }
     }
     $(document).on('click', '.article_button', function () {
         let form = $('#cform');
@@ -285,30 +289,118 @@ $(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function ( req ) {
-                console.log( req );
+                req = JSON.parse( req );
+                if( req.code == 0 ) {
+                    layer.msg( req.message, { icon: 2, time: 1500 })
+                } else if( req.code == 1 ) {
+                    layer.msg( req.message, { icon: 1, time: 1500}, ()=> {
+                        let articleid = $("input[name=articleid]").val();
+                        let pn = '';
+                        if( $( "input[name=parentid]").val() ) {
+                            let page =  $.trim( $('.pagination>.active>span').text() ) ;
+                            if( page ) {
+                                pn = '?page=' + page;
+                            }
+                        }
+                        $('.comment_item').load( '/article/' + articleid +  pn + ' .comment_item>div');
+                    })
+                }
+            },
+            error:function ( req ) {
+                if(req.status == 422 )
+                {
+                    let json=JSON.parse(req.responseText);
+                    json = json.errors;
+                    for ( var item in json) {
+                        for ( var i = 0; i < json[item].length; i++) {
+                            layer.msg( json[item][i], { icon: 2, time: 2000})
+                            return false;
+                        }
+                    }
+                }
             }
-
         } )
     })
-    $(document).on("input propertychange",".error",function(){
+    $(document).on("input propertychange",".error",function( ){
         if( $( 'textarea').val()) {
             $( 'textarea').removeClass('error');
         }
     });
 
+    $(document).on('keydown', 'form#cform textarea', function (e) {
+        if( e.keyCode == 8 ){
+            setTimeout(function () {
+                if( $( 'textarea').val().length < 1 )
+                {
+                    if( $('input').is('.comentsharecid') )
+                    {
+                        $('.comentsharecid, .comparent').remove();
+                    }
+                }
+            }, 100 )
+        }
+    });
+
     $(document).on('click', '.commentshare', function () {
         let id = $(this).attr('data-id');
-        let username = $(this).closest('.resume-item').find('.name').text();
-        let html = '<input type="hidden" name="cid" value="' + id + '" class="comentsharecid">';
+        let parentid = $(this).closest('.parent').attr('data-parent');
+        let username = $.trim( $(this).closest('.resume-item').find('.name:first').text() );
+        let html = '<input type="hidden" name="pid" value="' + id + '" class="comentsharecid">' +
+                   '<input type="hidden" name="parentid" value="' + parentid + '" class="comparent">';
         if( $('input').is('.comentsharecid')) {
-            $('.comentsharecid').remove();
+            $('.comentsharecid,.comparent').remove();
         }
         $('#cform>.align-right').append( html );
         $('textarea[name=contents]').val('@' +  username + ' ').focus();
     })
 
-    $(document).on('click', 'a.page-link', function () {
+    $(document).on('click', '.commentlzl a.page-link', function () {
+        $(this).closest('.lzl').load( $(this).attr('href') + ' .lzl>div');
+        return false
+    })
+
+    $(document).on('click','.comment a.page-link', function(){
+        $('.comment_item').load( $(this).attr('href') + ' .comment_item>div');
+        return false
+    })
+
+    $(document).on('click', '.links a.page-link', function () {
         $('#card').load( $(this).attr('href') + ' .card-container').addClass('active');
         return false
     })
+    $('.lines-grid .row .col .lines').width( 0 );
+    
+    function archives() {
+        /*if(!$(".history").length){
+            return false;
+        }*/
+        var $warpEle = $(".history-date"),
+            $targetA = $warpEle.find("h2 a,ul li dl dt a"),
+            parentH,
+            eleTop = [];
+
+        parentH = $warpEle.parent().height();
+        $warpEle.parent().css({"height":59});
+
+        setTimeout(function(){
+
+            $warpEle.find("ul").children(":not('h2:first')").each(function(idx){
+                eleTop.push($(this).position().top);
+                $(this).css({"margin-top":-eleTop[idx]}).children().hide();
+            }).animate({"margin-top":0}, 1600).children().fadeIn();
+
+            $warpEle.parent().animate({"height":parentH}, 2600);
+
+            $warpEle.find("ul").children(":not('h2:first')").addClass("bounceInDown").css({"-webkit-animation-duration":"2s","-webkit-animation-delay":"0","-webkit-animation-timing-function":"ease","-webkit-animation-fill-mode":"both"}).end().children("h2").css({"position":"relative"});
+
+        }, 600);
+        $(document).on('click', 'a.nogo', function () {
+            $(this).parent().css({"position":"relative"});
+            $(this).parent().siblings().slideToggle();
+            $warpEle.parent().removeAttr("style");
+            return false;
+        });
+    }
+
+
 });

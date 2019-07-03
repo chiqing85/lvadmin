@@ -42,4 +42,12 @@ class ConfigLogic extends Model
             return redirect()->back()->withErrors('没有更改任何值…');
         }
     }
+
+    static function getglob() {
+        return Cache::rememberForever('glob', function () {
+            return Config::where('status', 1)
+                ->orderBy( 'sorts')
+                ->get([ 'v','k']);
+        });
+    }
 }

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>麒麟阁·休闲音乐</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
+	<!-- 滚动条美化样式文件 -->
+    <link rel="stylesheet" type="text/css" href="Css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="Css/player.css">
+</head>
+<body>
+	<!-- 顶部 -->
+	<header>
+		<div class="logo">
+        	♫ 休闲音乐
+    	</div>
+		<div class="search">
+			<input type="text" class="sug-input" autocomplete="off" name="search" placeholder="输入歌曲歌手、专辑名…">
+			<span class="glyphicon glyphicon-search"></span>
+		</div>
+		<div class="login">
+			<a class="LoginBtn" href="javascript:;">登录</a>
+			<a href="http://www.qilinge.la">首页</a>
+		</div>
+	</header>
+	<!-- 播放器主体 -->
+	<section>
+		<!-- 左侧栏 -->
+		<aside class="leftcol">
+			<ul class="f-cb">
+				<li class="sheet-item sheet-playing" data-no="0">
+					<img src="http://y.gtimg.cn/mediastyle/yqq/extra/player_cover.png?param=40y40" alt="">
+					正在播放
+				</li>
+				<li class="sheet-item" data-no="1" title="播放历史">
+					<img width="40" src="http://lab.mkblog.cn/music/images/player_cover.png" title="">
+					播放历史
+				</li>
+				<li class="sheet-item" data-no="2"  title="云音乐热歌榜">
+					<img src="http://p3.music.126.net/GhhuF6Ep5Tq9IEvLsyCN7w==/18708190348409091.jpg?param=40y40" alt="云音乐热歌榜">
+					热歌榜
+				</li>
+				<li class="sheet-item" data-no="3" title="云音乐新歌榜">
+					<img src="http://p1.music.126.net/N2HO5xfYEqyQ8q6oxCw8IQ==/18713687906568048.jpg?param=40y40" alt="云音乐新歌榜">
+					新歌榜
+				</li>
+				<li class="sheet-item" data-no="4" title="云音乐飙升榜">
+					<img src="http://p1.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=40y40" alt="云音乐飙升榜">
+					飙升榜
+				</li>
+				<li class="sheet-item" data-no="5" title="华语金曲榜">
+					<img src="http://p3.music.126.net/N2whh2Prf0l8QHmCpShrcQ==/19140298416347251.jpg?param=40y40" alt="华语金曲榜">
+					金曲榜
+				</li>
+				<li class="sheet-item" data-no="6" title="网易原创歌曲榜">
+					<img src="http://p3.music.126.net/sBzD11nforcuh1jdLSgX7g==/18740076185638788.jpg?param=40y40" alt="网易原创歌曲榜">
+					原创榜
+				</li>
+				<li class="sheet-item" data-no="7" title="中国TOP排行榜（内地榜）">
+					<img src="http://p3.music.126.net/N2whh2Prf0l8QHmCpShrcQ==/19140298416347251.jpg?param=40y40" alt="中国TOP排行榜（内地榜）">
+					中国TOP(内)
+				</li>
+				<li class="sheet-item" data-no="8" title="中国TOP排行榜（港台榜）">
+					<img src="http://p3.music.126.net/JPh-zekmt0sW2Z3TZMsGzA==/18967675090783713.jpg?param=40y40" alt="中国TOP排行榜（港台榜）">
+					中国TOP(港台)
+				</li>
+				<li class="sheet-item" data-no="9" title="美国Billboard周榜">
+					<img src="http://p1.music.126.net/EBRqPmY8k8qyVHyF8AyjdQ==/18641120139148117.jpg?param=40y40" alt="美国Billboard周榜">
+					美国Billboard
+				</li>
+				<li class="sheet-item" data-no="10" title="云音乐韩语榜">
+					<img src="http://p1.music.126.net/vs-cMh49e6qPEorHuhU07A==/18737877162497499.jpg?param=40y40" alt="云音乐韩语榜">
+					韩语榜
+				</li>
+				<li class="sheet-item" data-no="11" title="日本Oricon周榜">
+					<img src="http://p1.music.126.net/Rgqbqsf4b3gNOzZKxOMxuw==/19029247741938160.jpg?param=40y40" alt="日本Oricon周榜">
+					日本Oricon
+				</li>
+			</ul>
+		</aside>
+		<!-- 滚动歌词 -->
+		<aside class="listlyric">
+			<!-- 封面 -->
+			<div class="ric-info">
+				<img id="change" src="http://y.gtimg.cn/mediastyle/yqq/extra/player_cover.png?param=186x186" title="">
+			</div>
+			<!-- 滚动歌词 -->
+			<div class="lyric" id="mCSB_2_container1">
+				<!-- 歌词 -->
+			</div>
+		</aside>
+		<!-- 播放列表 -->
+		<article class="main-list" id="mCSB_2_container">
+			<ul class="list-head">
+				<li>
+					<span class="list-num"></span>
+					<span class="music-album">专辑</span>
+					<span class="auth-name">歌手</span>
+					<span class="music-name">歌曲</span>
+				</li>
+				<li class="list-item text-center">播放列表加载中…</li>
+			</ul>
+		</article>
+	</section>
+	<!-- 播放器控制条 -->
+	<footer>
+		<div class="panel-inner">
+			<a href="javascript:;" class="player-btn btn-prev" title="上一首">
+				<span class="glyphicon glyphicon-step-backward"></span>
+			</a>
+	        <a href="javascript:;" class="player-btn btn-playvolume" title="暂停/继续">
+	        	<span class="glyphicon  glyphicon-play"></span>
+	        </a>
+	        <a href="javascript:;" class="player-btn btn-next" title="下一首">
+	        	<span class="glyphicon glyphicon-step-forward"></span>
+	        </a>
+	        <div class="main-panel">
+				<span class="title-wrapper"> - </span>
+				<span class="player-time">00:00 / 00:00</span>
+				<div class="progress-box">  
+                	<div id="music-progress" class="mkpgb-area mkpgb-locked">
+                		<div class="mkpgb-bar"></div>
+                		<div class="mkpgb-cur" style="width: 0%;"></div>
+                		<div class="mkpgb-dot" style="left: 0%;"></div>
+            		</div>
+	            </div>
+			</div>
+			<div class="vol">
+				<div class="glyphicon glyphicon-volume-up muted"></div>
+				<div class="volume">
+            		<div class="mkpgb-bar"></div>
+            		<div class="mkpgb-cur" style="width: 50%;"></div>
+            		<div class="mkpgb-dot" style="left: 50%;"></div>
+        		</div>
+			</div>
+		</div>		
+	</footer>
+	<!-- 背景 -->
+	<div class="blurbgMask"></div>
+	<div class="bg_player" style="background-image:url(http://y.gtimg.cn/mediastyle/yqq/extra/player_cover.png?max_age=31536000);"></div>
+	<!-- 登录框 -->
+	<div class="LoginWrap" style="-webkit-transform: translatey(-200px);transform: translatey(-200px);display: none;">
+		<div class="LoginTitle">请输入您的网易云 ID</div>
+		<div class="glyphicon glyphicon-remove" title="关闭"></div>
+		<div class="form-group">
+			<input type="text" class="form-control">
+		</div>
+		<div class="LoginBottom">
+			<span class="btn btn-primary LoginDeter">确定</span>
+			<span class="btn btn-default normal">取消</span>
+			<span class="btn btn-default help" title="如何获取您的网易云ID？">帮助</span>
+		</div>
+	</div>
+	<!-- 帮助 -->
+	<div class="HelpWrap">
+		<div class="HelpTitle">如何获取您的网易云ID？</div>
+		<div class="glyphicon glyphicon-remove" title="关闭"></div>
+		<div class="HelpConter">
+			<b>何为网易云ID?要如何获取云ID：</b><br/>
+			1、首先打开网易云音乐官网：<a href="http://music.163.com/" target="_blank">http://music.163.com</a><br />
+			2、如果你已经成功注册，请登录;没有注册，请注册后登录。<br />
+			3、登录成功后，进入“我的主页”<br />
+			4、此时浏览器地址栏的<span style="color: green">/#/user/home?id=</span>后面的<span style="color: red">数字</span>就是您的网易云 ID<br />
+		</div>
+		<div class="HelpBottom">
+			<div class="btn btn-primary HelpDeter">确定</div>
+		</div>
+	</div>
+	<div class="modal-backdrop"></div>
+	<!-- 滚动条美化插件 -->
+	<script src="Js/jquery.mCustomScrollbar.min.js"></script>
+	<script src="Js/Config.js"></script>
+	<!-- 播放器默认加载 -->
+	<script src="Js/y.js"></script>
+<script src="https://s4.cnzz.com/z_stat.php?id=1260119653&web_id=1260119653" language="JavaScript"></script>
+</body>
+</html>	

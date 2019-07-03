@@ -62,7 +62,7 @@ class LinksController extends Controller
      */
     public function delete(Link $id) {
         $id->delete();
-        Cache::forget( 'link');
+        Cache::forget( 'getlink');
         return back();
     }
 }

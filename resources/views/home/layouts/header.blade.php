@@ -15,7 +15,7 @@
      <div class="top-menu">
          <ul>
              <li class="active">
-                 <a href="#home-card">
+                 <a href="/">
                      <span class="icon la la-home"></span>
                      <span class="link">Home</span>
                  </a>
@@ -27,13 +27,13 @@
                  </a>
              </li>
              <li>
-                 <a href="#works-card">
+                 <a data-url="archives" href="#works-card">
                      <span class="icon la la-archive"></span>
                      <span class="link">Archives</span>
                  </a>
              </li>
              <li>
-                 <a href="#about-card">
+                 <a data-url="about" href="#about-card">
                      <span class="icon la la-user"></span>
                      <span class="link">About</span>
                  </a>
@@ -45,7 +45,7 @@
                  </a>
              </li>
              <li>
-                 <a href="#contacts-card">
+                 <a data-url="contacts" href="#contacts-card">
                      <span class="icon la la-envelope"></span>
                      <span class="link">Contacts</span>
                  </a>

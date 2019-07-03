@@ -14,9 +14,9 @@ class LinkLogic extends Model
      */
     static function get() {
         if( request('page') ) {
-            Cache::forget('link');
+            Cache::forget('getlink');
         }
-        return Cache::rememberForever('link',  function () {
+        return Cache::rememberForever('getlink',  function () {
             return  Link::orderBy('sorts', 'asc')
                 ->orderBy('id', 'asc')
                 ->paginate( 12 );
@@ -31,7 +31,7 @@ class LinkLogic extends Model
     static function create( $callback ) {
         $data = $callback->all();
         Link::create( $data );
-        Cache::forget('link');
+        Cache::forget('getlink');
         return redirect('/admin/links');
     }
 
@@ -44,7 +44,7 @@ class LinkLogic extends Model
         $data = request(['link_name', 'link_url', 'email', 'sorts', 'status']);
         $data['status'] = request('status') ? request('status') : 0;
         $callback->update($data);
-        Cache::forget('link');
+        Cache::forget('getlink');
         return redirect('/admin/links');
     }
 
@@ -54,8 +54,8 @@ class LinkLogic extends Model
             return  Link::where('status', 1)
                 ->orderBy('sorts', 'asc')
                 ->orderBy('id', 'asc')
-                ->link()
-                ->limit( 10 );
+                ->limit( 10 )
+                ->get();
         });
     }
 }

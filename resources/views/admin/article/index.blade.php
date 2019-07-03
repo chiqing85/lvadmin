@@ -89,7 +89,7 @@
                                     <td> {{ $v->sorts }}</td>
                                     <td data-value="78025368997">{{ $v->created_at }}</td>
                                     <td data-value="1">
-                                        <a data-pjax href="{{ url("admin/article/update/$v->id") }}" class="btn btn-icon btn-social white btn-sm success"><i class="fa fa-eye"></i><i class="create_i"> 预览 </i></a>
+                                        <a href="{{ url("/article/$v->id") }}" class="btn btn-icon btn-social white btn-sm success" target="_blank"><i class="fa fa-eye"></i><i class="create_i"> 预览 </i></a>
                                         <a data-pjax href="{{ url("admin/article/update/$v->id") }}" class="btn btn-icon btn-social white btn-sm info"><i class="fa fa-pencil"></i><i class="create_i"> 编辑 </i></a>
                                         <a data-pjax href="javascript:;" data-value="{flag: {{ $v->flag ? 0 : 1 }} }" data-url="{{ url("admin/article/edit/$v->id") }}" class="btn btn-icon btn-social white btn-sm edit
                                             @if ($v->flag == 0)

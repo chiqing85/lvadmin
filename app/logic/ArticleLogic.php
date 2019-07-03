@@ -77,7 +77,6 @@ class ArticleLogic extends Model
                 'message' => '更新失败…',
             );
         }
-        Cache::forget('artic');
         return json_encode( $data );
     }
 
@@ -94,13 +93,13 @@ class ArticleLogic extends Model
                 'message' => '删除成功…',
                 'url' => '/admin/article'
             );
+            Cache::forget('artic');
         } else {
             $data = array(
                 'code' => 0,
                 'message' => '删除失败…',
             );
         }
-        Cache::forget('artic');
         return json_encode( $data );
     }
 
@@ -124,26 +123,52 @@ class ArticleLogic extends Model
             Cache::forget('homelist');
         }
         return Cache::remember('homelist', 60, function () {
-            return Article::orderBy('flag', 'desc')
+            return Article::whereHas( 'aclass', function( $query ) {
+                    $query->where('mid', 0);
+                })
+                ->orderBy('flag', 'desc')
                 ->orderBy('sorts', 'asc')
                 ->orderBy('id', 'desc')
-                ->with('aclass:id,name')
-                ->paginate( 15 );
+                ->withCount( ['comment' => function($query ) {
+                    $query->whereNotIn('status', ['-3']);
+                }])
+                ->paginate( 12 );
         });
     }
 
+    /**
+     * @title 文章类别列表
+     * @param $callback
+     * @return mixed
+     */
     static function Categories( $callback ) {
-        $aid = Aclass::where('dirs', $callback)->get( 'id');
+        $aid = Aclass::where('dirs', $callback)->get('id')->toArray();
+        $aid = $aid[0]['id'];
         if( request('page') ) {
-            Cache::forget('homelist');
+            Cache::forget('Categories'.$aid );
         }
-        return Cache::remember('homelist', 60, function( ) use( $aid ) {
+        return Cache::remember('Categories'.$aid , 60, function( ) use( $aid ) {
             return Article::where('pid', $aid )
                 ->orderBy('flag', 'desc')
                 ->orderBy('sorts', 'asc')
                 ->orderBy('id', 'desc')
-                ->with('aclass:id,name')
+                ->withCount( ['comment' => function($query ) {
+                    $query->whereNotIn('status', ['-3']);
+                }])
                 ->paginate( 15 );
+        });
+    }
+
+    /**
+     * @title 关于我
+     * @return mixed
+     */
+    static function about()
+    {
+        return Cache::remember('about', 3600 * 24, function () {
+           return Article::whereHas('aclass', function ($query ) {
+               $query->where('mid', 1);
+           })->first();
         });
     }
 }

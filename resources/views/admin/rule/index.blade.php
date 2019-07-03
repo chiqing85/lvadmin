@@ -46,7 +46,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $v->name }}</td>
-                                <td> <i class="material-icons">{!! $v->icon !!}</i></td>
+                                <td>@if( $v->icon ) <i class="material-icons">{!! $v->icon !!}</i>@endif</td>
                                 <td>
                                     @if ($v->menu)
                                         <span class="label red">否</span>

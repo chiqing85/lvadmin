@@ -1,8 +1,8 @@
 (function ($) {
 	'use strict';
     if ($.support.pjax) {
+      jAudio();
       $.pjax.defaults.maxCacheLength = 0;
-
       var container = $('#view');
       $(document).on('click', 'a[data-pjax], [data-pjax] a, #aside .nav a', function(event) {
         if($("#view").length == 0 || $(this).hasClass('no-ajax')){
@@ -15,11 +15,10 @@
       });
       // fix js
       $(document).on('pjax:end', function(event) {
-        
         $(event.target).find('[ui-jp]').uiJp();
         $(event.target).uiInclude();
-
         $( document ).trigger( "pjaxEnd" );
+        jAudio();
       });
     }
 })(jQuery);

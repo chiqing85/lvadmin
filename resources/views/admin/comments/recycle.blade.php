@@ -19,12 +19,11 @@
                 </div>
                 <div class="col-sm-4"> </div>
                 <div class="col-sm-3">
-                    <div class="input-group input-group-sm">
-                        <input type="text" class="form-control" placeholder="Search" name="search">
-                        <span class="input-group-btn">
-                        <button class="btn b-a white" type="button">
-                            <i class="material-icons">&#xe8b6;</i>
-                        </button>
+                    <div class="pull-right">
+                        <a data-pjax href="{{ url('/admin/comments/') }}">
+                            <i class="fa fa-reply"></i>
+                            &nbsp;返回
+                        </a>
                     </span>
                     </div>
                 </div>

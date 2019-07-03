@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class LoginController extends Controller
 {
@@ -32,6 +33,7 @@ class LoginController extends Controller
             );
             \App\Loginlog::create( $data );
             // 成功跳转
+            Cache::forget('getlist');
             return redirect('/admin');
         }
         return redirect()->back()->withErrors('用户名或密码错误');
